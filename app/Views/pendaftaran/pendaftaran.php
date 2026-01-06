@@ -1,0 +1,598 @@
+<?= $this->extend('layout/app'); ?>
+<?= $this->section('content'); ?>
+
+<?php
+$this->setData([
+    'title' => ($lang == 'id') ? $meta['title_daftar'] : $meta['title_daftar_en'],
+    'meta_description' => ($lang == 'id') ? $meta['meta_description_daftar'] : $meta['meta_description_daftar_en']
+]);
+?>
+
+<style>
+    /* Artikel Detail Section */
+    .pendaftaran-section {
+        padding: 0px 15px;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    /*css*/
+    .card {
+        margin-top: 20px;
+    }
+
+    .custom-card {
+        background-color: #F5F5F7;
+        color: #333;
+        border: 1px solid #ccc;
+    }
+
+    .h3 {
+        text-align: left;
+    }
+
+    .line-separator {
+        width: 100%;
+        min-width: 50px;
+        height: 2px;
+        background-color: #000;
+        margin: 20px 0;
+    }
+
+    .textcontent {
+        margin-top: 20px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    .line-separatorkecil {
+        width: 100%;
+        height: 2px;
+        background-color: #000;
+        margin: 10px 0;
+    }
+
+    .form-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        width: 150px;
+        margin-right: 10px;
+        text-align: left;
+        font-weight: normal;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .form-group.fullwidth {
+        display: block !important;
+        /* hapus aturan flex */
+    }
+
+    /* Perbaikan tampilan checkbox + teks */
+    .form-group.fullwidth .form-check {
+        display: flex !important;
+        align-items: flex-start;
+        /* sejajarkan atas teks */
+        gap: 8px;
+        /* jarak kotak dan teks */
+        width: 100%;
+    }
+
+    /* khusus checkbox biar tidak ikut width 100% */
+    .form-group input[type="checkbox"] {
+        width: 18px !important;
+        height: 18px !important;
+        flex: 0 0 auto;
+        /* supaya tidak melar */
+        margin-top: 3px;
+    }
+
+
+    .form-check-label {
+        flex: 1;
+        white-space: normal;
+        /* teks panjang bisa turun */
+    }
+
+    .showpw {
+        margin-left: 160px;
+        margin-top: -10px;
+        margin-bottom: 10px;
+    }
+
+    .required {
+        color: red;
+    }
+
+    .btn-custom {
+        background-color: var(--c-primary);
+        text-align: center;
+        color: var(--c-white);
+    }
+
+    .btn-custom:hover {
+        background-color: var(--c-accent);
+        color: var(--c-white);
+    }
+
+    .radio-group label {
+        display: block;
+        /* Membuat radio button dan teks berada dalam satu baris vertikal */
+        margin-bottom: 5px;
+        /* Memberikan jarak antar radio button */
+    }
+
+    .form-group textarea {
+        flex: 1;
+        /* Membuat textarea menyesuaikan dengan kolom lainnya */
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100%;
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .btn-sm {
+        padding: .25rem .5rem;
+        font-size: .875rem;
+        border-radius: .25rem;
+    }
+
+    .rekening-admin {
+        position: relative;
+        display: inline-block;
+    }
+
+    .rekening-admin i {
+        position: absolute;
+        top: 0;
+        right: -20px;
+        background: none;
+        border: none;
+        color: #0d6efd;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    /*responsive mobile*/
+    @media (max-width: 768px) {
+        .h3 {
+            margin-top: 30px;
+        }
+
+        .form-group {
+            display: block;
+        }
+
+        .form-group label {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+        }
+
+        .showpw {
+            margin-left: 10px;
+        }
+
+        .radiobutton {
+            margin-left: 10px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .container-pendaftaran {
+            padding-left: 32px;
+            padding-right: 32px;
+        }
+    }
+</style>
+
+<!-- judul -->
+<div class="pendaftaran-section pt-5 text-center">
+    <h2 class="text-custom-title"><?= lang('Blog.pendaftaranJudul'); ?></h2>
+    <p class="text-custom-paragraph mt-2"><?= lang('Blog.pendaftaranDeskripsi'); ?></p>
+</div>
+
+<!-- Form Pendaftaran -->
+<div class="container py-5 container-pendaftaran">
+    <div class="row gx-4">
+        <div class="col-md-6 left-section">
+            <h3><?= lang('Blog.keuntunganMember'); ?></h3>
+            <hr class="line-separator">
+            <p><?= lang('Blog.keuntunganDeskripsi'); ?></p>
+            <?php $no = 1; ?>
+            <?php foreach ($keuntungan as $item): ?>
+                <p>
+                    <strong>
+                        <?= $no++ ?>. <?= ($lang == 'id') ? $item['judul_keuntungan'] : $item['judul_keuntungan_en'] ?>
+                    </strong>
+                    <br>
+                    <?= ($lang == 'id') ? $item['deskripsi_keuntungan'] : $item['deskripsi_keuntungan_en'] ?>
+                </p>
+            <?php endforeach; ?>
+        </div>
+
+        <div class="col-md-6 right-section">
+            <h3 class="h3"><?= lang('Blog.daftarJudul'); ?></h3>
+            <hr class="line-separator">
+
+            <!-- Card untuk Form Pendaftaran -->
+            <div class="card p-3 custom-card">
+
+                <?php if (session()->getFlashdata('success')) : ?>
+                    <div class="alert alert-success">
+                        <?= session()->getFlashdata('success'); ?>
+                    </div>
+                <?php endif; ?>
+
+                <!-- Menampilkan pesan error jika username atau email sudah ada -->
+                <?php if (session()->getFlashdata('error')) : ?>
+                    <div class="alert alert-danger">
+                        <?= session()->getFlashdata('error'); ?>
+                    </div>
+                <?php endif; ?>
+
+                <form action="<?= base_url('pendaftaran') ?>" method="post" enctype="multipart/form-data">
+                    <?= csrf_field() ?>
+
+                    <!-- Hidden field for role -->
+                    <input type="hidden" name="role" value="user">
+
+                    <div class="textcontent mt-2">
+                        <h5><?= lang('Blog.infoAkun'); ?></h5>
+                        <hr class="line-separatorkecil">
+                    </div>
+
+                    <!-- Username -->
+                    <span id="username-status" class="form-text" style="margin-bottom: 10px; display: block; margin-left: 160px;"></span>
+                    <div class="form-group">
+                        <label for="username"><?= lang('Blog.username'); ?><span class="required">*</span></label>
+                        <input type="text" id="username" name="username" required placeholder="<?= lang('Blog.placeholderUsername'); ?>" value="<?= old('username') ?>">
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="password"><?= lang('Blog.password'); ?><span class="required">*</span></label>
+                        <input type="password" id="password" name="password" required placeholder="<?= lang('Blog.placeholderPassword'); ?>">
+                    </div>
+
+                    <!-- Checkbox untuk Show Password -->
+                    <div class="showpw">
+                        <input type="checkbox" id="show-password" onclick="togglePassword()"> <?= lang('Blog.showPassword'); ?>
+                    </div>
+
+                    <!-- Referral -->
+                    <span id="referral-status" class="form-text" style="margin-bottom: 10px; display: block; margin-left: 160px;"></span> <!-- Status pengecekan referral -->
+                    <div class="form-group">
+                        <label for="referral"><?= lang('Blog.referral'); ?></label>
+                        <input type="text" id="referral" name="referral" placeholder="<?= lang('Blog.placeholderReferral'); ?>" value="<?= old('referral') ?>">
+                    </div>
+
+                    <!-- <div class="form-group">
+                        <label>Jenis Member</label>
+                        <div class="form-check d-flex align-items-start">
+                            <input class="form-check-input" type="radio" name="pilihan" id="memberPremium" value="Member Premium" required>
+                            <label class="form-check-label ms-2" for="memberPremium">
+                                Member Premium
+                            </label>
+                        </div>
+                        <div class="form-check d-flex align-items-start">
+                            <input class="form-check-input" type="radio" name="pilihan" id="memberFree" value="Member Free" required>
+                            <label class="form-check-label ms-2" for="memberFree">
+                                Member Free
+                            </label>
+                        </div>
+                    </div> -->
+
+                    <div class="textcontent mt-5">
+                        <h5><?= lang('Blog.profilPerusahaan'); ?></h5>
+                        <hr class="line-separatorkecil">
+                    </div>
+
+                    <!-- Nama Perusahaan -->
+                    <div class="form-group">
+                        <label for="nama_perusahaan"><?= lang('Blog.namaPerusahaan'); ?><span class="required">*</span></label>
+                        <input type="text" id="nama_perusahaan" name="nama_perusahaan" required placeholder="<?= lang('Blog.placeholderNamaPerusahaan'); ?>" value="<?= old('nama_perusahaan') ?>">
+                    </div>
+
+                    <!-- Deskripsi Perusahaan -->
+                    <div class="form-group">
+                        <label for="deskripsi_perusahaan"><?= lang('Blog.deskripsiPerusahaan'); ?><span class="required">*</span></label>
+                        <textarea type="text" id="deskripsi_perusahaan" name="deskripsi_perusahaan" required placeholder="<?= lang('Blog.placeholderDeskripsiPerusahaan'); ?>" value="<?= old('deskripsi_perusahaan') ?>"></textarea>
+                    </div>
+
+                    <!-- Deskripsi Perusahaan EN -->
+                    <div class="form-group">
+                        <label for="deskripsi_usaha_en"><?= lang('Blog.deskripsiUsahaEN'); ?><span class="required">*</span></label>
+                        <textarea type="text" id="deskripsi_usaha_en" name="deskripsi_usaha_en" required placeholder="<?= lang('Blog.placeholderDeskripsiUsahaEN'); ?>" value="<?= old('deskripsi_usaha_en') ?>"></textarea>
+                    </div>
+
+                    <!-- Upload Foto Usaha -->
+                    <div class="form-group">
+                        <label for="foto_usaha"><?= lang('Blog.fotousaha'); ?></label>
+                        <input type="file" id="foto_usaha" name="foto_usaha" accept="image/*">
+                    </div>
+
+                    <!-- Tahun Berdiri Perusahaan -->
+                    <div class="form-group">
+                        <label for="tahun_berdiri"><?= lang('Blog.tahunberdiri'); ?><span class="required">*</span></label>
+                        <select id="tahun_berdiri" name="tahun_berdiri" required>
+                            <option value="" disabled selected><?= lang('Blog.placeholdertahunberdiri'); ?></option>
+                            <?php
+                            $currentYear = date('Y');
+                            for ($year = $currentYear; $year >= 1900; $year--) {
+                                echo "<option value=\"$year\"" . (old('tahun_berdiri') == $year ? ' selected' : '') . ">$year</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <!-- Alamat Perusahaan -->
+                    <div class="form-group">
+                        <label for="alamat_perusahaan"><?= lang('Blog.alamatperusahaan'); ?><span class="required">*</span></label>
+                        <textarea id="alamat_perusahaan" name="alamat_perusahaan" required placeholder="<?= lang('Blog.placeholderalamatperusahaan'); ?>"><?= old('alamat_perusahaan') ?></textarea>
+                    </div>
+
+                    <!-- Produk Perusahaan ID -->
+                    <div class="form-group">
+                        <label for="produk_utama"><?= lang('Blog.produkperusahaan'); ?><span class="required">*</span></label>
+                        <textarea id="produk_utama" name="produk_utama" required placeholder="<?= lang('Blog.placeholderaprodukperusahaan'); ?>"><?= old('produk_utama') ?></textarea>
+                    </div>
+
+                    <!-- Produk Perusahaan EN -->
+                    <div class="form-group">
+                        <label for="produk_utama_en"><?= lang('Blog.produkperusahaanen'); ?><span class="required">*</span></label>
+                        <textarea id="produk_utama_en" name="produk_utama_en" required placeholder="<?= lang('Blog.placeholderaprodukperusahaanen'); ?>"><?= old('produk_utama_en') ?></textarea>
+                    </div>
+
+                    <!-- Kategori Produk -->
+                    <div class="form-group mb-3">
+                        <label for="kategori_produk" class="form-label">
+                            Kategori Produk <span class="text-danger">*</span>
+                        </label>
+                        <select id="kategori_produk" name="kategori_produk" class="form-control" required>
+                            <option value="" disabled selected>Pilih Kategori Produk</option>
+                            <?php foreach ($kategori_induk as $item): ?>
+                                <option disabled class="fw-bold text-secondary">
+                                    --- <?= $item['nama_kategori_induk'] ?> ---
+                                </option>
+                                <?php if (!empty($kategori_produk_terkelompok[$item['id_kategori_induk']])): ?>
+                                    <?php foreach ($kategori_produk_terkelompok[$item['id_kategori_induk']] as $produk): ?>
+                                        <option value="<?= $produk['nama_kategori_produk'] ?>">
+                                            <?= $produk['nama_kategori_produk'] ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            <option value="other" class="text-primary">+ Tambah Kategori Lainnya</option>
+                        </select>
+                    </div>
+
+                    <!-- wrapper row agar rapi -->
+                    <div class="row">
+                        <!-- dropdown induk -->
+                        <div class="col-md-6">
+                            <div class="form-group mb-3" id="dropdownInduk" style="display:none;">
+                                <label for="id_induk" class="form-label">Pilih Kategori Induk</label>
+                                <select id="id_induk" name="id_induk" class="form-control">
+                                    <option value="" disabled selected>-- Pilih Kategori Induk --</option>
+                                    <?php foreach ($kategori_induk as $induk): ?>
+                                        <option value="<?= $induk['id_kategori_induk'] ?>">
+                                            <?= $induk['nama_kategori_induk'] ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- input kategori baru -->
+                        <div class="col-md-6">
+                            <div class="form-group mb-3" id="inputBaru" style="display:none;">
+                                <label for="kategori_baru" class="form-label">Kategori Baru</label>
+                                <input
+                                    type="text"
+                                    id="kategori_baru"
+                                    name="kategori_baru"
+                                    class="form-control"
+                                    placeholder="Masukkan kategori baru" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        const selectKategori = document.getElementById('kategori_produk');
+                        const dropdownInduk = document.getElementById('dropdownInduk');
+                        const inputBaru = document.getElementById('inputBaru');
+                        const selectInduk = document.getElementById('id_induk');
+
+                        // Step 1: ketika user pilih "lainnya"
+                        selectKategori.addEventListener('change', function() {
+                            if (this.value === 'other') {
+                                dropdownInduk.style.display = 'block';
+                            } else {
+                                dropdownInduk.style.display = 'none';
+                                inputBaru.style.display = 'none';
+                                selectInduk.value = "";
+                            }
+                        });
+
+                        // Step 2: setelah user pilih induk, munculkan input kategori baru
+                        selectInduk.addEventListener('change', function() {
+                            if (this.value) {
+                                inputBaru.style.display = 'block';
+                            } else {
+                                inputBaru.style.display = 'none';
+                            }
+                        });
+                    </script>
+
+                    <!-- Alamat Email Usaha -->
+                    <div class="form-group">
+                        <label for="email_usaha"><?= lang('Blog.alamatemailusaha'); ?><span class="required">*</span></label>
+                        <textarea id="email_usaha" name="email_usaha" required placeholder="<?= lang('Blog.placeholderalamatemailusaha'); ?>"><?= old('email_usaha') ?></textarea>
+                    </div>
+
+                    <!-- Alamat Website Perusahaan -->
+                    <div class="form-group">
+                        <label for="alamat_website"><?= lang('Blog.alamatwebperusahaan'); ?></label>
+                        <textarea id="alamat_website" name="alamat_website" placeholder="<?= lang('Blog.placeholderalamatwebperusahaan'); ?>"><?= old('alamat_website') ?></textarea>
+                    </div>
+
+                    <div class="textcontent mt-5">
+                        <h5><?= lang('Blog.profilpic'); ?></h5>
+                        <hr class="line-separatorkecil">
+                    </div>
+
+                    <!-- Nama PIC -->
+                    <div class="form-group">
+                        <label for="pic"><?= lang('Blog.pic'); ?><span class="required">*</span></label>
+                        <input type="text" id="pic" name="pic" required placeholder="<?= lang('Blog.placeholderPIC'); ?>" value="<?= old('pic') ?>">
+                    </div>
+
+                    <!-- Email -->
+                    <span id="email-status" class="form-text" style="margin-bottom: 10px; display: block; margin-left: 160px;"></span> <!-- Status pengecekan email di bawah input -->
+                    <div class="form-group">
+                        <label for="email"><?= lang('Blog.emailPendaftaran'); ?><span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="<?= lang('Blog.placeholderEmail'); ?>" value="<?= old('email') ?>">
+                    </div>
+
+                    <!-- No HP Perusahaan -->
+                    <div class="form-group">
+                        <label for="nomor_pic"><?= lang('Blog.noPIC'); ?><span class="required">*</span></label>
+                        <input type="tel" id="nomor_pic" name="nomor_pic" required placeholder="<?= lang('Blog.placeholderNoPIC'); ?>" value="<?= old('nomor_pic') ?>">
+                    </div>
+
+                    <div class="textcontent mt-5">
+                        <h5><?= lang('Blog.uploadbuktitransfer'); ?></h5>
+                        <hr class="line-separatorkecil">
+                    </div>
+
+                    <!--Rekening Admin-->
+                    <div class="textcontent mt-1">
+                        <h5 class="mb-3"><?= lang('Blog.rekeningadmin'); ?></h5>
+                        <div class="textcontent mt-2">
+                            <p><?php echo lang('Blog.nomorrekeningadmin'); ?> : 12345678</p>
+                            <p><?php echo lang('Blog.jenisbankadmin'); ?> : BCA</p>
+                            <p><?php echo lang('Blog.namarekeningadmin'); ?> : Test</p>
+                        </div>
+                    </div>
+
+                    <!--Upload Bukti Transfer-->
+                    <div class="form-group">
+                        <label for="bukti_transfer"><?= lang('Blog.buktitransfer'); ?><span class="required">*</span></label>
+                        <input type="file" id="bukti_transfer" name="bukti_transfer" accept="image/*" required>
+                    </div>
+
+                    <!--Nama Rekening-->
+                    <div class="form-group">
+                        <label for="nama_rekening"><?= lang('Blog.namarekening'); ?><span class="required">*</span></label>
+                        <input type="text" id="nama_rekening" name="nama_rekening" required placeholder="<?= lang('Blog.placeholdernamarekening'); ?>" value="<?= old('nama_rekening') ?>">
+                    </div>
+
+                    <!--Nomor Rekening-->
+                    <div class="form-group">
+                        <label for="nomor_rekening"><?= lang('Blog.nomorrekening'); ?><span class="required">*</span></label>
+                        <input type="text" id="nomor_rekening" name="nomor_rekening" required placeholder="<?= lang('Blog.placeholdernomorrekening'); ?>" value="<?= old('nomor_rekening') ?>">
+                    </div>
+
+                    <!--Jenis Bank-->
+                    <div class="form-group">
+                        <label for="jenis_bank"><?= lang('Blog.jenisbank'); ?><span class="required">*</span></label>
+                        <input type="text" id="jenis_bank" name="jenis_bank" required placeholder="<?= lang('Blog.placeholderjenisbank'); ?>" value="<?= old('jenis_bank') ?>">
+                    </div>
+
+                    <!-- Syarat dan Ketentuan -->
+                    <div class="form-group fullwidth">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="agree_terms" name="agree_terms" required>
+                            <label class="form-check-label" for="agree_terms">
+                                <?= lang('Blog.syaratketentuandeskripsi1'); ?>
+                                <a href="<?= ($lang == 'en') ? base_url('/en/terms-conditions') : base_url('/id/syarat-ketentuan') ?>" target="_blank" class="link-syarat">
+                                    <?= lang('Blog.syaratketentuanlink'); ?>
+                                </a> <?= lang('Blog.syaratketentuandeskripsi2'); ?>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group fullwidth">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="syarat2" name="syarat2" required>
+                            <label class="form-check-label" for="syarat2">
+                                <?= lang('Blog.syaratketentuandeskripsi3'); ?>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- reCAPTCHA -->
+                    <div class="form-group mt-3">
+                        <div class="g-recaptcha" data-sitekey="6LfFqdsrAAAAAML7-q53U81Jk7jB8GeUOqfHkCZN" required></div>
+                    </div>
+                    <!-- <?php if (session()->getFlashdata('error')): ?>
+                        <div style="color:red;">
+                            <?= session()->getFlashdata('error') ?>
+                        </div>
+                    <?php endif; ?> -->
+
+                    <!-- Tombol Submit -->
+                    <button type="submit" class="btn btn-custom mt-3" style="width: 100%;"><?= lang('Blog.submitButton'); ?></button>
+
+                    <!-- Script Google reCAPTCHA -->
+                    <script src="https://www.google.com/recaptcha/api.js?hl=<?= $lang ?>" async defer></script>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+    // Cuma untuk show/hide password
+    function togglePassword() {
+        var passwordField = document.getElementById("password");
+        var showPassword = document.getElementById("show-password");
+        if (showPassword.checked) {
+            passwordField.type = "text";
+        } else {
+            passwordField.type = "password";
+        }
+    }
+
+    // VALIDASI SEDIKIT DI CLIENT: referral tidak boleh sama dengan username
+    document.addEventListener('DOMContentLoaded', function () {
+        var form = document.querySelector('form');
+        var usernameInput = document.getElementById('username');
+        var referralInput = document.getElementById('referral');
+
+        form.addEventListener('submit', function (e) {
+            var username = usernameInput.value.trim();
+            var referral = referralInput.value.trim();
+
+            if (referral && username && username === referral) {
+                e.preventDefault();
+                alert('Kode referral tidak boleh sama dengan username');
+            }
+        });
+    });
+</script>
+
+
+<?= $this->endSection(); ?>

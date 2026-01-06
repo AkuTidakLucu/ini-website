@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Web GIS UMM - Kampus III</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f7f9;
+        }
+
+        h2 { color: #b71c1c; margin-bottom: 10px; }
+        p { margin-bottom: 20px; color: #555; }
+
+        #map {
+            height: 600px;
+            width: 100%;
+            max-width: 1100px;
+            border: 3px solid #b71c1c; /* Warna Merah Khas UMM */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        .info-box {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Peta Kampus III Universitas Muhammadiyah Malang</h2>
+    <p>Visualisasi Dot, Polyline (Rute), dan Polygon Area Kampus</p>
+    
+    <div id="map"></div>
+
+    <div class="info-box">
+        <b>Legenda:</b> 
+        <span style="color: #2e7d32;">⬤</span> Area Kampus | 
+        <span style="color: #b71c1c;">⬤</span> Fasilitas Utama | 
+        <span style="color: #007bff;">▬</span> Jalur Gerbang ke Rektorat
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+    <script>
+        // 1. Inisialisasi Peta (Fokus ke Kampus III UMM Tlogomas)
+        var map = L.map('map').setView([-7.9210, 112.5975], 17);
+
+        // 2. Tambahkan Tile Layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // 3. Koordinat Lokasi (DOT)
+        var gerbangUMM = [-7.92135, 112.59685];     // Gerbang Utama
+        var perpusUMM  = [-7.92055, 112.59735];     // Perpustakaan Pusat
+        var rektoratUMM = [-7.92105, 112.59850];    // Gedung Rektorat (GKB I)
+
+        // Tambahkan Marker (Dot)
+        L.marker(gerbangUMM).addTo(map).bindPopup('<b>Gerbang Masuk Utama</b>');
+        L.marker(perpusUMM).addTo(map).bindPopup('<b>Perpustakaan Pusat UMM</b>');
+        L.marker(rektoratUMM).addTo(map).bindPopup('<b>Gedung Rektorat / GKB I</b>');
+
+        // 4. Membuat Polyline (Rute Gerbang ke Rektorat mengikuti jalan)
+        L.Routing.control({
+            waypoints: [
+                L.latLng(gerbangUMM),
+                L.latLng(rektoratUMM)
+            ],
+            lineOptions: {
+                styles: [{ color: '#007bff', opacity: 0.8, weight: 6 }]
+            },
+            routeWhileDragging: false,
+            addWaypoints: false,
+            show: false 
+        }).addTo(map);
+
+        // 5. Membuat Polygon (Batas Area Kampus Utama)
+        var batasKampusUMM = [
+            [-7.9218, 112.5962],
+            [-7.9195, 112.5965],
+            [-7.9190, 112.5985],
+            [-7.9205, 112.6005],
+            [-7.9220, 112.5995],
+            [-7.9225, 112.5970]
+        ];
+
+        var areaKampus = L.polygon(batasKampusUMM, {
+            color: '#2e7d32',       // Warna hijau (identitas Islam UMM)
+            fillColor: '#81c784',
+            fillOpacity: 0.3,
+            weight: 2
+        }).addTo(map).bindPopup('Area Kampus III UMM');
+
+        // 6. Merapikan tampilan agar semua elemen masuk dalam frame
+        var group = new L.featureGroup([areaKampus]);
+        map.fitBounds(group.getBounds());
+
+    </script>
+
+</body>
+
+</html>
