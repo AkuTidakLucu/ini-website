@@ -20,6 +20,9 @@ $this->setData([
 ?>
 
 <style>
+    /* =========================
+    1) Design tokens (global)
+    ========================= */
     :root {
         --font-size-title-cta: 38px;
         --font-size-desc-cta: 18px;
@@ -28,31 +31,34 @@ $this->setData([
         --font-size-title-carousel: 34px;
         --font-size-desc-carousel: 16px;
 
-        /* WARNA DARI MEMBER YANG FINAL */
-        --c-primary: #0A5C36; /* Green Emerald */
-        --c-accent: #D4AF37; /* Gold/Mustard */
-        --c-background: #F9F9F9; /* Off-White */
-        --c-primary-light: #1C7A4D;
-        --c-primary-dark: #084428;
-        --c-accent-light: #E6C158;
-        --c-text: #2D3748;
-        --c-text-light: #4A5568;
+        /* WARNA COFFEE PALETTE (SAMA DENGAN VISITOR) */
+        --c-primary: #6F4E37;          /* Coffee Bean */
+        --c-accent: #D99A6C;           /* Light Bronze */
+        --c-secondary: #A67B5B;        /* Faded Copper */
+        --c-background: #FED8B1;       /* Soft Apricot */
+        --c-primary-light: #8C6B51;    /* Coffee Bean lebih terang */
+        --c-primary-dark: #5A3E2C;     /* Coffee Bean lebih gelap */
+        --c-accent-light: #ECB176;     /* Light Caramel */
+        --c-text: #2D1B10;            /* Deep Cocoa */
+        --c-text-light: #5D4C3E;       /* Deep Cocoa lebih terang */
         
         /* Bootstrap Overrides */
         --bs-primary: var(--c-primary);
-        --bs-primary-rgb: 10, 92, 54;
+        --bs-primary-rgb: 111, 78, 55; /* Coffee Bean */
+        --bs-warning: var(--c-accent);
+        --bs-warning-rgb: 217, 154, 108; /* Light Bronze */
     }
 
     /* ===================================================
-       1. Global Reset - SAMA DENGAN VISITOR
+       1. Global Reset
        =================================================== */
     * {
         box-sizing: border-box;
     }
 
     body {
-        background-color: var(--c-background);
-        color: var(--c-text);
+        background-color: var(--c-background); /* Soft Apricot */
+        color: var(--c-text); /* Deep Cocoa */
         font-family: 'Lato', sans-serif;
         line-height: 1.6;
         overflow-x: hidden;
@@ -95,7 +101,7 @@ $this->setData([
         object-position: center;
     }
 
-    /* OVERLAY HIJAU EMERALD TRANSPARAN (20%) */
+    /* OVERLAY COFFEE BEAN TRANSPARAN (40%) */
     .carousel-item::after {
         content: '';
         position: absolute;
@@ -103,7 +109,7 @@ $this->setData([
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(10, 92, 54, 0.6); /* #0A5C36 dengan 20% opacity */
+        background-color: rgba(111, 78, 55, 0.6); /* #6F4E37 dengan 40% opacity */
         z-index: 1;
     }
 
@@ -197,7 +203,7 @@ $this->setData([
     }
 
     .carousel-indicators [data-bs-target].active {
-        background-color: var(--c-accent);
+        background-color: var(--c-accent-light); /* Light Caramel */
         transform: scale(1.2);
     }
 
@@ -206,7 +212,6 @@ $this->setData([
         color: white;
         margin-bottom: 20px;
         line-height: 1.2;
-        /* Hapus text-shadow karena sudah ada overlay */
     }
 
     .desc-carousel {
@@ -214,18 +219,17 @@ $this->setData([
         color: white;
         margin-bottom: 25px;
         line-height: 1.6;
-        /* Hapus text-shadow karena sudah ada overlay */
     }
 
-    /* Untuk Visitor: tombol di carousel */
+    /* Untuk Member: tombol di carousel */
     .centered-button-carousel {
         text-align: left;
         margin-top: 20px;
     }
 
     .centered-button-carousel .btn {
-        background-color: var(--c-accent);
-        color: var(--c-primary-dark);
+        background-color: var(--c-accent); /* Light Bronze */
+        color: white;
         border: none;
         padding: 12px 30px;
         font-weight: 600;
@@ -238,13 +242,13 @@ $this->setData([
     }
 
     .centered-button-carousel .btn:hover {
-        background-color: var(--c-accent-light);
+        background-color: var(--c-accent-light); /* Light Caramel */
         transform: translateY(-3px);
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
     }
 
     /* ===================================================
-       3. CTA "Daftar Sekarang" - DESAIN DARI VISITOR
+       3. CTA "Daftar Sekarang"
        =================================================== */
     .daftar-section {
         background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-dark) 100%);
@@ -253,7 +257,7 @@ $this->setData([
         margin: 80px auto 60px;
         padding: 50px 40px;
         border-radius: 20px;
-        box-shadow: 0 15px 35px rgba(10, 92, 54, 0.2);
+        box-shadow: 0 15px 35px rgba(111, 78, 55, 0.2); /* Coffee Bean shadow */
     }
 
     .daftar-section .row {
@@ -268,7 +272,7 @@ $this->setData([
         display: inline-block;
     }
 
-    /* Garis emas dengan space */
+    /* Garis dengan warna aksen */
     .title-cta::after {
         content: '';
         position: absolute;
@@ -276,7 +280,7 @@ $this->setData([
         left: 0;
         width: 100px;
         height: 4px;
-        background-color: var(--c-accent);
+        background-color: var(--c-accent-light); /* Light Caramel */
         border-radius: 2px;
     }
 
@@ -286,6 +290,23 @@ $this->setData([
         margin-top: 40px;
         margin-bottom: 30px;
         line-height: 1.6;
+    }
+
+    .centered-button .btn {
+        border: 2px solid white;
+        background: transparent;
+        color: white;
+        padding: 12px 35px;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+    }
+
+    .centered-button .btn:hover {
+        background: white;
+        color: var(--c-primary); /* Coffee Bean */
+        transform: translateY(-3px);
     }
 
     .daftar-section img.daftar-img {
@@ -299,87 +320,160 @@ $this->setData([
     }
 
     /* ===================================================
-    4. Benefit Join - DESAIN DARI VISITOR (TAMBAHAN UNTUK TABS)
-    =================================================== */
+       4. Benefit Join - MEMBER VERSION (SAMA DENGAN VISITOR)
+       =================================================== */
 
-    /* Wrapper untuk seluruh section benefits */
-    .benefits-section-wrapper {
-        padding: 0 15px;
-        margin: 40px 0;
+    /* Main Section Container */
+    .benefit-main-section {
+        margin: 60px 0;
     }
 
-    .benefit-wrapper {
-        border-radius: 20px;
+    /* Background untuk judul dan deskripsi */
+    .benefit-green-bg {
+        background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-dark) 100%);
+        border-radius: 20px 20px 0 0;
         overflow: hidden;
-        box-shadow: 0 20px 40px rgba(10, 92, 54, 0.15);
-    }
-
-    /* Background hijau untuk section Benefit Join - DENGAN ROUNDED CORNERS */
-    .benefit {
-        background-color: var(--c-primary);
-        padding: 60px 0 40px;
-        text-align: center;
-        margin-top: 0;
         position: relative;
     }
 
-    /* Garis emas di atas section */
-    .benefit::before {
+    /* Garis aksen di atas background */
+    .benefit-green-bg::before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         height: 5px;
-        background: linear-gradient(90deg, var(--c-accent), var(--c-accent-light));
+        background: linear-gradient(90deg, var(--c-accent), var(--c-accent-light)); /* Bronze ke Caramel */
     }
 
-    .benefit p.title-cta {
+    .benefit-header {
+        padding: 60px 20px 40px;
+    }
+
+    .benefit-header .title-cta {
         color: white !important;
         font-size: 2.8rem;
         margin-bottom: 15px;
-        position: relative;
-        z-index: 1;
     }
 
-    .benefit .border-top-small {
+    .benefit-header .border-top-small {
         width: 80px;
         height: 4px;
-        background-color: var(--c-accent);
+        background-color: var(--c-accent-light); /* Light Caramel */
         margin: 20px auto;
         border-radius: 2px;
-        position: relative;
-        z-index: 1;
     }
 
-    .benefit .desc-cta {
+    .benefit-header .desc-cta {
         color: rgba(255, 255, 255, 0.9) !important;
         max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 0 auto;
         font-size: 1.1rem;
-        position: relative;
-        z-index: 1;
-        padding: 0 20px;
+        line-height: 1.7;
     }
 
-    /* Area tabs (setelah judul hijau) - background putih */
-    .manfaat-tabs-container {
-        padding: 40px 0 60px;
-        background-color: var(--c-background);
-        margin-top: 0;
+    /* Container untuk 3 kotak manfaat */
+    .manfaat-container {
+        background-color: white;
+        border-radius: 0 0 20px 20px;
+        padding: 40px 20px 60px;
+        box-shadow: 0 15px 35px rgba(111, 78, 55, 0.1); /* Coffee Bean shadow */
+        margin-top: -1px; /* Untuk menyambung dengan background */
+    }
+
+    /* Styling untuk 3 kotak manfaat */
+    .manfaat {
+        padding: 20px 0 0;
+    }
+
+    .manfaat-item {
+        max-width: 350px;
+        margin: 0 auto 30px;
+        padding: 30px 25px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(111, 78, 55, 0.1); /* Coffee Bean shadow */
+        transition: all 0.3s ease;
+        text-align: center;
+        border: 1px solid rgba(111, 78, 55, 0.1); /* Coffee Bean border */
+    }
+
+    .manfaat-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(111, 78, 55, 0.15); /* Coffee Bean shadow */
+    }
+
+    .benefit-icon-box {
+        width: 100px;
+        height: 100px;
+        background: var(--c-background); /* Soft Apricot */
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        border: 2px solid rgba(111, 78, 55, 0.1); /* Coffee Bean border */
+        transition: all 0.3s ease;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .manfaat-item:hover .benefit-icon-box {
+        background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-light) 100%);
+        border-color: var(--c-primary); /* Coffee Bean */
+    }
+
+    /* Kontrol ukuran gambar di icon box */
+    .benefit-icon-img {
+        width: 60px !important;
+        height: 60px !important;
+        object-fit: contain !important;
+        transition: all 0.3s ease;
+    }
+
+    .default-icon {
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .manfaat h6 {
+        font-weight: 700;
+        font-size: 1.3rem;
+        color: var(--c-primary); /* Coffee Bean */
+        margin-bottom: 15px;
+    }
+
+    .manfaat p {
+        font-size: 1rem;
+        color: var(--c-text-light);
+        line-height: 1.6;
+        margin-bottom: 0;
+    }
+
+    /* ===================================================
+       TABS INTERAKTIF SECTION
+       =================================================== */
+
+    /* Section tabs */
+    .manfaat-tabs-section {
+        padding: 60px 0 40px;
+        background-color: var(--c-background); /* Soft Apricot */
+        margin-top: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(111, 78, 55, 0.1); /* Coffee Bean shadow */
     }
 
     /* Tabs Navigation Styling */
     .benefits-tabs-navigation {
-        margin-bottom: 40px !important;
+        margin-bottom: 50px !important;
     }
 
     .benefit-tab-btn {
         background: white;
-        border: 2px solid rgba(10, 92, 54, 0.15);
-        color: var(--c-text);
-        padding: 14px 24px;
+        border: 2px solid rgba(111, 78, 55, 0.15); /* Coffee Bean border */
+        color: var(--c-text); /* Deep Cocoa */
+        padding: 15px 25px;
         border-radius: 12px;
         font-weight: 600;
         font-size: 1rem;
@@ -388,27 +482,27 @@ $this->setData([
         display: flex;
         align-items: center;
         justify-content: center;
-        min-width: 200px;
+        min-width: 220px;
         margin: 5px;
-        box-shadow: 0 4px 12px rgba(10, 92, 54, 0.08);
+        box-shadow: 0 4px 12px rgba(111, 78, 55, 0.08); /* Coffee Bean shadow */
         font-family: "Lato", sans-serif;
     }
 
     .benefit-tab-btn:hover {
         border-color: var(--c-primary-light);
         transform: translateY(-3px);
-        box-shadow: 0 6px 18px rgba(10, 92, 54, 0.12);
+        box-shadow: 0 6px 18px rgba(111, 78, 55, 0.12); /* Coffee Bean shadow */
     }
 
     .benefit-tab-btn.active {
         background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-light) 100%);
         color: white;
-        border-color: var(--c-primary);
-        box-shadow: 0 6px 20px rgba(10, 92, 54, 0.2);
+        border-color: var(--c-primary); /* Coffee Bean */
+        box-shadow: 0 6px 20px rgba(111, 78, 55, 0.2); /* Coffee Bean shadow */
     }
 
     .benefit-tab-btn i {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         margin-right: 10px;
     }
 
@@ -419,8 +513,8 @@ $this->setData([
         background: white;
         border-radius: 20px;
         padding: 40px;
-        box-shadow: 0 15px 35px rgba(10, 92, 54, 0.1);
-        border: 1px solid rgba(10, 92, 54, 0.1);
+        box-shadow: 0 15px 35px rgba(111, 78, 55, 0.1); /* Coffee Bean shadow */
+        border: 1px solid rgba(111, 78, 55, 0.1); /* Coffee Bean border */
     }
 
     .benefit-tab-pane.active {
@@ -434,7 +528,7 @@ $this->setData([
 
     /* Content Inside Tabs */
     .benefit-content-title {
-        color: var(--c-primary);
+        color: var(--c-primary); /* Coffee Bean */
         font-family: "Poetsen One", sans-serif;
         font-size: 2.2rem;
         margin-bottom: 20px;
@@ -449,7 +543,7 @@ $this->setData([
         left: 0;
         width: 80px;
         height: 4px;
-        background-color: var(--c-accent);
+        background-color: var(--c-accent-light); /* Light Caramel */
         border-radius: 2px;
     }
 
@@ -468,10 +562,10 @@ $this->setData([
     }
 
     .benefit-features-list li {
-        padding: 10px 0;
+        padding: 12px 0;
         padding-left: 35px;
         position: relative;
-        color: var(--c-text);
+        color: var(--c-text); /* Deep Cocoa */
         font-size: 1rem;
         line-height: 1.6;
         font-family: "Lato", sans-serif;
@@ -481,10 +575,10 @@ $this->setData([
         content: '✓';
         position: absolute;
         left: 0;
-        top: 10px;
+        top: 12px;
         width: 24px;
         height: 24px;
-        background-color: var(--c-primary);
+        background-color: var(--c-primary); /* Coffee Bean */
         color: white;
         border-radius: 50%;
         display: flex;
@@ -512,16 +606,360 @@ $this->setData([
         transform: scale(1.02);
     }
 
-    /* Responsive Design for Tabs */
+    /* ===================================================
+       5. Ajakan tengah (banner)
+       =================================================== */
+    .footer-custom {
+        background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-dark) 100%);
+        margin-top: 60px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .background-image {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 80px 20px;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .background-image .title-cta {
+        color: white;
+        font-size: 3rem;
+        margin-bottom: 25px;
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Garis dengan warna aksen */
+    .background-image .title-cta::after {
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 4px;
+        background-color: var(--c-accent-light); /* Light Caramel */
+        border-radius: 2px;
+    }
+
+    .background-image .desc-cta {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.3rem;
+        max-width: 800px;
+        margin: 50px auto 40px;
+        line-height: 1.6;
+    }
+
+    /* ===================================================
+       6. Garis dekoratif untuk section
+       =================================================== */
+    .border-top6,
+    .border-top7 {
+        width: 60px;
+        height: 4px;
+        background-color: var(--c-primary); /* Coffee Bean */
+        border-radius: 2px;
+        opacity: 0.8;
+    }
+
+    /* ===================================================
+       7. Paket Visitor / Member
+       =================================================== */
+    .kata1 {
+        padding: 60px 0 40px;
+        text-align: center;
+    }
+
+    .kata1 h5 {
+        font-weight: 300;
+        color: var(--c-text-light);
+        font-size: 1.3rem;
+        margin: 0 20px;
+    }
+
+    .kata1 .title-cta {
+        font-size: 2.8rem;
+        margin-top: 20px;
+        color: var(--c-text); /* Deep Cocoa */
+    }
+
+    .kata1 .title-cta span {
+        color: var(--c-primary); /* Coffee Bean */
+        position: relative;
+    }
+
+    .kata1 .title-cta span::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: var(--c-accent-light); /* Light Caramel */
+        border-radius: 2px;
+    }
+
+    .package-section {
+        padding-bottom: 60px;
+    }
+
+    .package-section .card {
+        border: none;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(111, 78, 55, 0.1); /* Coffee Bean shadow */
+        transition: all 0.3s ease;
+        max-width: 450px;
+        margin: 0 auto 30px;
+        background: white;
+    }
+
+    .package-section .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(111, 78, 55, 0.15); /* Coffee Bean shadow */
+    }
+
+    .package-section .card-header {
+        padding: 30px 20px;
+        border-bottom: none;
+    }
+
+    .card.bg-secondary .card-header {
+        background: linear-gradient(135deg, var(--c-secondary) 0%, #8C6B51 100%) !important; /* Faded Copper */
+    }
+
+    .card.bg-primary .card-header {
+        background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-light) 100%) !important; /* Coffee Bean */
+    }
+
+    .package-section .card-header h5 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: white;
+        margin: 0;
+    }
+
+    .package-section .card-body {
+        padding: 30px 25px;
+    }
+
+    .package-section .card-body i {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    .package-section .card-body h6 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        color: var(--c-text); /* Deep Cocoa */
+    }
+
+    .package-section .card-body h6.fw-bold {
+        font-weight: 700;
+    }
+
+    .package-section .card-body h6.text-secondary {
+        color: var(--c-secondary) !important; /* Faded Copper */
+        font-size: 1.8rem;
+        margin: 15px 0;
+    }
+
+    .package-section .card-body h6.text-primary {
+        color: var(--c-primary) !important; /* Coffee Bean */
+        font-size: 1.8rem;
+        margin: 15px 0;
+    }
+
+    .package-section .card-body p {
+        color: var(--c-text-light);
+        margin-bottom: 20px;
+        min-height: 60px;
+        line-height: 1.6;
+    }
+
+    .benefits-list {
+        max-height: 250px;
+        overflow-y: auto;
+        text-align: left;
+        padding: 15px;
+        background: var(--c-background); /* Soft Apricot */
+        border-radius: 10px;
+        border: 1px solid rgba(111, 78, 55, 0.1); /* Coffee Bean border */
+        margin: 20px 0;
+    }
+
+    .benefits-list hr {
+        margin: 10px 0;
+        opacity: 0.2;
+    }
+
+    .benefits-list p {
+        color: var(--c-text); /* Deep Cocoa */
+        margin-bottom: 8px;
+        padding-left: 5px;
+    }
+
+    .benefits-list::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .benefits-list::-webkit-scrollbar-track {
+        background: rgba(111, 78, 55, 0.05); /* Coffee Bean track */
+        border-radius: 3px;
+    }
+
+    .benefits-list::-webkit-scrollbar-thumb {
+        background: var(--c-primary); /* Coffee Bean */
+        border-radius: 3px;
+    }
+
+    .package-section .card-footer {
+        padding: 25px 20px;
+        background: white;
+        border-top: 1px solid rgba(111, 78, 55, 0.1); /* Coffee Bean border */
+    }
+
+    .recommended-label {
+        position: absolute;
+        top: 20px;
+        right: -35px;
+        background: var(--c-accent-light); /* Light Caramel */
+        color: white;
+        font-size: 0.85rem;
+        font-weight: 800;
+        padding: 8px 35px;
+        transform: rotate(45deg);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+    }
+
+    .package-section .btn {
+        padding: 12px 30px;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+    }
+
+    .package-section .btn-outline-secondary {
+        border: 2px solid var(--c-secondary); /* Faded Copper */
+        color: var(--c-secondary); /* Faded Copper */
+        background: transparent;
+    }
+
+    .package-section .btn-outline-secondary:hover:not(:disabled) {
+        background: var(--c-secondary); /* Faded Copper */
+        color: white;
+        transform: translateY(-3px);
+    }
+
+    .package-section .btn-primary {
+        background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-light) 100%);
+        border: none;
+        color: white;
+    }
+
+    .package-section .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(111, 78, 55, 0.3); /* Coffee Bean shadow */
+    }
+
+    /* ===================================================
+       8. Peta Member
+       =================================================== */
+    .peta {
+        padding: 60px 0 40px;
+        text-align: center;
+    }
+
+    .peta h5 {
+        font-weight: 300;
+        color: var(--c-text-light);
+        font-size: 1.3rem;
+        margin: 0 20px;
+    }
+
+    .peta .title-cta {
+        font-size: 2.8rem;
+        margin-top: 20px;
+        color: var(--c-text); /* Deep Cocoa */
+    }
+
+    .peta .title-cta span {
+        color: var(--c-primary); /* Coffee Bean */
+        position: relative;
+    }
+
+    .peta .title-cta span::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: var(--c-accent-light); /* Light Caramel */
+        border-radius: 2px;
+    }
+
+    .peta2 {
+        padding-bottom: 80px;
+    }
+
+    .peta2 .map {
+        width: 100%;
+        height: 600px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(111, 78, 55, 0.15); /* Coffee Bean shadow */
+        border: 3px solid white;
+    }
+
+    /* ===================================================
+       9. Responsif - Benefit Tabs
+       =================================================== */
+
     /* Tablet Landscape (992px dan bawah) */
     @media (max-width: 992px) {
-        .benefit-wrapper {
+        .benefit-main-section {
+            margin: 50px 0;
+        }
+        
+        .benefit-header {
+            padding: 50px 20px 35px;
+        }
+        
+        .benefit-header .title-cta {
+            font-size: 2.5rem;
+        }
+        
+        .benefit-icon-box {
+            width: 90px;
+            height: 90px;
+        }
+        
+        .benefit-icon-img {
+            width: 55px !important;
+            height: 55px !important;
+        }
+        
+        .default-icon {
+            width: 45px !important;
+            height: 45px !important;
+        }
+        
+        .manfaat-tabs-section {
+            padding: 50px 0 30px;
+            margin-top: 30px;
             border-radius: 18px;
-            margin: 30px 0;
         }
         
         .benefit-tab-btn {
-            min-width: 180px;
+            min-width: 200px;
             padding: 12px 20px;
             font-size: 0.95rem;
         }
@@ -537,36 +975,65 @@ $this->setData([
 
     /* Tablet Portrait (768px dan bawah) */
     @media (max-width: 768px) {
-        .benefits-section-wrapper {
-            padding: 0 10px;
+        .benefit-main-section {
+            margin: 40px 15px;
         }
         
-        .benefit-wrapper {
-            border-radius: 16px;
-            margin: 25px 0;
+        .benefit-green-bg,
+        .manfaat-container,
+        .manfaat-tabs-section {
+            border-radius: 15px;
         }
         
-        .benefit {
-            padding: 50px 0 30px;
+        .benefit-header {
+            padding: 40px 15px 30px;
         }
         
-        .benefit p.title-cta {
+        .benefit-header .title-cta {
             font-size: 2.2rem;
         }
         
-        .benefit .desc-cta {
+        .benefit-header .desc-cta {
             font-size: 1rem;
-            padding: 0 15px;
+        }
+        
+        .benefit-icon-box {
+            width: 80px;
+            height: 80px;
+        }
+        
+        .benefit-icon-img {
+            width: 50px !important;
+            height: 50px !important;
+        }
+        
+        .default-icon {
+            width: 40px !important;
+            height: 40px !important;
+        }
+        
+        .manfaat-item {
+            max-width: 300px;
+            padding: 25px 20px;
+        }
+        
+        .manfaat h6 {
+            font-size: 1.2rem;
+        }
+        
+        .manfaat-tabs-section {
+            padding: 40px 15px 30px;
+            margin-top: 30px;
         }
         
         .benefit-tab-btn {
-            min-width: 160px;
-            padding: 10px 16px;
+            min-width: 170px;
+            padding: 10px 15px;
             font-size: 0.9rem;
         }
         
         .benefits-tabs-navigation {
-            gap: 10px;
+            gap: 8px;
         }
         
         .benefit-content-title {
@@ -594,37 +1061,70 @@ $this->setData([
 
     /* Mobile (576px dan bawah) */
     @media (max-width: 576px) {
-        .benefits-section-wrapper {
-            padding: 0 5px;
+        .benefit-main-section {
+            margin: 30px 10px;
         }
         
-        .benefit-wrapper {
-            border-radius: 14px;
-            margin: 20px 0;
+        .benefit-green-bg,
+        .manfaat-container,
+        .manfaat-tabs-section {
+            border-radius: 12px;
         }
         
-        .benefit {
-            padding: 40px 0 25px;
+        .benefit-header {
+            padding: 35px 15px 25px;
         }
         
-        .benefit p.title-cta {
-            font-size: 1.8rem;
+        .benefit-header .title-cta {
+            font-size: 1.9rem;
         }
         
-        .benefit .desc-cta {
+        .benefit-header .desc-cta {
             font-size: 0.95rem;
-            padding: 0 10px;
+        }
+        
+        .benefit-icon-box {
+            width: 70px;
+            height: 70px;
+        }
+        
+        .benefit-icon-img {
+            width: 45px !important;
+            height: 45px !important;
+        }
+        
+        .default-icon {
+            width: 35px !important;
+            height: 35px !important;
+        }
+        
+        .manfaat-item {
+            max-width: 280px;
+            padding: 20px 15px;
+        }
+        
+        .manfaat h6 {
+            font-size: 1.1rem;
+        }
+        
+        .manfaat p {
+            font-size: 0.95rem;
+        }
+        
+        .manfaat-tabs-section {
+            padding: 35px 10px 25px;
+            margin-top: 25px;
         }
         
         .benefit-tab-btn {
-            min-width: 140px;
+            min-width: 150px;
             padding: 8px 12px;
             font-size: 0.85rem;
         }
         
         .benefit-tab-btn i {
             font-size: 1rem;
-            margin-right: 5px;
+            margin-right: 6px;
         }
         
         .benefit-content-title {
@@ -644,29 +1144,63 @@ $this->setData([
 
     /* Small Mobile (425px dan bawah) */
     @media (max-width: 425px) {
-        .benefits-section-wrapper {
-            padding: 0;
+        .benefit-main-section {
+            margin: 25px 8px;
         }
         
-        .benefit-wrapper {
-            border-radius: 12px;
-            margin: 15px 0;
+        .benefit-green-bg,
+        .manfaat-container,
+        .manfaat-tabs-section {
+            border-radius: 10px;
         }
         
-        .benefit {
-            padding: 35px 0 20px;
+        .benefit-header {
+            padding: 30px 10px 20px;
         }
         
-        .benefit p.title-cta {
-            font-size: 1.6rem;
+        .benefit-header .title-cta {
+            font-size: 1.7rem;
         }
         
-        .benefit .desc-cta {
+        .benefit-header .desc-cta {
             font-size: 0.9rem;
         }
         
+        .benefit-icon-box {
+            width: 60px;
+            height: 60px;
+        }
+        
+        .benefit-icon-img {
+            width: 40px !important;
+            height: 40px !important;
+        }
+        
+        .default-icon {
+            width: 30px !important;
+            height: 30px !important;
+        }
+        
+        .manfaat-item {
+            max-width: 260px;
+            padding: 18px 12px;
+        }
+        
+        .manfaat h6 {
+            font-size: 1rem;
+        }
+        
+        .manfaat p {
+            font-size: 0.9rem;
+        }
+        
+        .manfaat-tabs-section {
+            padding: 30px 8px 20px;
+            margin-top: 20px;
+        }
+        
         .benefit-tab-btn {
-            min-width: 130px;
+            min-width: 140px;
             padding: 6px 10px;
             font-size: 0.8rem;
         }
@@ -686,346 +1220,8 @@ $this->setData([
         }
     }
 
-    /* Extra Small Mobile (375px dan bawah) */
-    @media (max-width: 375px) {
-        .benefit-wrapper {
-            border-radius: 10px;
-        }
-        
-        .benefit p.title-cta {
-            font-size: 1.5rem;
-        }
-        
-        .benefit-tab-btn {
-            min-width: 120px;
-            padding: 5px 8px;
-            font-size: 0.75rem;
-        }
-        
-        .benefit-content-title {
-            font-size: 1.3rem;
-        }
-        
-        .benefit-tab-pane {
-            padding: 18px 12px;
-        }
-    }
-
     /* ===================================================
-       5. Ajakan tengah (banner) - DESAIN DARI VISITOR
-       =================================================== */
-    .footer-custom {
-        background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-dark) 100%);
-        margin-top: 60px;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .background-image {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 80px 20px;
-        text-align: center;
-        position: relative;
-        z-index: 1;
-    }
-
-    .background-image .title-cta {
-        color: white;
-        font-size: 3rem;
-        margin-bottom: 25px;
-        position: relative;
-        display: inline-block;
-    }
-
-    /* Garis emas dengan space */
-    .background-image .title-cta::after {
-        content: '';
-        position: absolute;
-        bottom: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 120px;
-        height: 4px;
-        background-color: var(--c-accent);
-        border-radius: 2px;
-    }
-
-    .background-image .desc-cta {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 1.3rem;
-        max-width: 800px;
-        margin: 50px auto 40px;
-        line-height: 1.6;
-    }
-
-    /* ===================================================
-       6. Garis dekoratif - DESAIN DARI VISITOR
-       =================================================== */
-    .border-top6,
-    .border-top7 {
-        width: 60px;
-        height: 4px;
-        background-color: var(--c-primary);
-        border-radius: 2px;
-        opacity: 0.8;
-    }
-
-    /* ===================================================
-       7. Paket Visitor / Member - DESAIN DARI VISITOR
-       =================================================== */
-    .kata1 {
-        padding: 60px 0 40px;
-        text-align: center;
-    }
-
-    .kata1 h5 {
-        font-weight: 300;
-        color: var(--c-text-light);
-        font-size: 1.3rem;
-        margin: 0 20px;
-    }
-
-    .kata1 .title-cta {
-        font-size: 2.8rem;
-        margin-top: 20px;
-        color: var(--c-text);
-    }
-
-    .kata1 .title-cta span {
-        color: var(--c-primary);
-        position: relative;
-    }
-
-    .kata1 .title-cta span::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background-color: var(--c-accent);
-        border-radius: 2px;
-    }
-
-    .package-section {
-        padding-bottom: 60px;
-    }
-
-    .package-section .card {
-        border: none;
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(10, 92, 54, 0.1);
-        transition: all 0.3s ease;
-        max-width: 450px;
-        margin: 0 auto 30px;
-        background: white;
-    }
-
-    .package-section .card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(10, 92, 54, 0.15);
-    }
-
-    .package-section .card-header {
-        padding: 30px 20px;
-        border-bottom: none;
-    }
-
-    .card.bg-secondary .card-header {
-        background: linear-gradient(135deg, #6c757d 0%, #495057 100%) !important;
-    }
-
-    .card.bg-primary .card-header {
-        background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-light) 100%) !important;
-    }
-
-    .package-section .card-header h5 {
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: white;
-        margin: 0;
-    }
-
-    .package-section .card-body {
-        padding: 30px 25px;
-    }
-
-    .package-section .card-body i {
-        font-size: 3.5rem;
-        margin-bottom: 20px;
-        display: block;
-    }
-
-    .package-section .card-body h6 {
-        font-size: 1.3rem;
-        margin-bottom: 10px;
-        color: var(--c-text);
-    }
-
-    .package-section .card-body h6.fw-bold {
-        font-weight: 700;
-    }
-
-    .package-section .card-body h6.text-secondary {
-        color: #6c757d !important;
-        font-size: 1.8rem;
-        margin: 15px 0;
-    }
-
-    .package-section .card-body h6.text-primary {
-        color: var(--c-primary) !important;
-        font-size: 1.8rem;
-        margin: 15px 0;
-    }
-
-    .package-section .card-body p {
-        color: var(--c-text-light);
-        margin-bottom: 20px;
-        min-height: 60px;
-        line-height: 1.6;
-    }
-
-    .benefits-list {
-        max-height: 250px;
-        overflow-y: auto;
-        text-align: left;
-        padding: 15px;
-        background: var(--c-background);
-        border-radius: 10px;
-        border: 1px solid rgba(10, 92, 54, 0.1);
-        margin: 20px 0;
-    }
-
-    .benefits-list hr {
-        margin: 10px 0;
-        opacity: 0.2;
-    }
-
-    .benefits-list p {
-        color: var(--c-text);
-        margin-bottom: 8px;
-        padding-left: 5px;
-    }
-
-    .benefits-list::-webkit-scrollbar {
-        width: 6px;
-    }
-
-    .benefits-list::-webkit-scrollbar-track {
-        background: rgba(10, 92, 54, 0.05);
-        border-radius: 3px;
-    }
-
-    .benefits-list::-webkit-scrollbar-thumb {
-        background: var(--c-primary);
-        border-radius: 3px;
-    }
-
-    .package-section .card-footer {
-        padding: 25px 20px;
-        background: white;
-        border-top: 1px solid rgba(10, 92, 54, 0.1);
-    }
-
-    .recommended-label {
-        position: absolute;
-        top: 20px;
-        right: -35px;
-        background: var(--c-accent);
-        color: var(--c-primary-dark);
-        font-size: 0.85rem;
-        font-weight: 800;
-        padding: 8px 35px;
-        transform: rotate(45deg);
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-        z-index: 10;
-    }
-
-    .package-section .btn {
-        padding: 12px 30px;
-        font-weight: 600;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-        font-size: 1rem;
-    }
-
-    .package-section .btn-outline-secondary {
-        border: 2px solid #6c757d;
-        color: #6c757d;
-        background: transparent;
-    }
-
-    .package-section .btn-outline-secondary:hover:not(:disabled) {
-        background: #6c757d;
-        color: white;
-        transform: translateY(-3px);
-    }
-
-    .package-section .btn-primary {
-        background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-light) 100%);
-        border: none;
-        color: white;
-    }
-
-    .package-section .btn-primary:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(10, 92, 54, 0.3);
-    }
-
-    /* ===================================================
-       8. Peta Member - DESAIN DARI VISITOR
-       =================================================== */
-    .peta {
-        padding: 60px 0 40px;
-        text-align: center;
-    }
-
-    .peta h5 {
-        font-weight: 300;
-        color: var(--c-text-light);
-        font-size: 1.3rem;
-        margin: 0 20px;
-    }
-
-    .peta .title-cta {
-        font-size: 2.8rem;
-        margin-top: 20px;
-        color: var(--c-text);
-    }
-
-    .peta .title-cta span {
-        color: var(--c-primary);
-        position: relative;
-    }
-
-    .peta .title-cta span::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background-color: var(--c-accent);
-        border-radius: 2px;
-    }
-
-    .peta2 {
-        padding-bottom: 80px;
-    }
-
-    .peta2 .map {
-        width: 100%;
-        height: 600px;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 15px 35px rgba(10, 92, 54, 0.15);
-        border: 3px solid white;
-    }
-
-    /* ===================================================
-       9. Responsif - DESAIN DARI VISITOR
+       10. Responsif Utama
        =================================================== */
 
     /* Tablet Landscape (992px dan bawah) */
@@ -1166,6 +1362,10 @@ $this->setData([
         .carousel-control-prev,
         .carousel-control-next {
             width: 20%;
+        }
+
+        .centered-button-carousel {
+            text-align: center;
         }
 
         .daftar-section {
@@ -1384,7 +1584,6 @@ $this->setData([
                     <div class="carousel-caption d-block text-light">
                         <div class="title-carousel fw-bold"><?= esc(($lang == 'en') ? $s['judul_slider_en'] : $s['judul_slider']); ?></div>
                         <div class="desc-carousel"><?= esc(strip_tags(($lang == 'en') ? $s['deskripsi_slider_en'] : $s['deskripsi_slider'])); ?></div>
-
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -1412,7 +1611,6 @@ $this->setData([
                 <p class="text-light mb-0 desc-cta">
                     <?= ($lang == 'en') ? $webprofile[0]['deskripsi_ajakan_en'] : $webprofile[0]['deskripsi_ajakan'] ?>
                 </p>
-
             </div>
         </div>
 
@@ -1425,153 +1623,174 @@ $this->setData([
     </div>
 </section>
 
-<!-- Benefits Tabs Section (Ganti section "Keuntungan" yang ada) -->
-<section class="benefits-section-wrapper">
-    <div class="container">
-        <div class="benefit-wrapper">
-            <!-- Background hijau dengan rounded top -->
-            <div class="benefit container text-center py-5">
-                <p class="fw-bold mb-0 title-cta">MANFAAT JOIN MEMBER</p>
-                <div class="d-flex justify-content-center align-items-center">
-                    <div class="border-top-small"></div>
-                </div>
-                <p class="text-dark mb-0 desc-cta">
-                    Menjadi anggota komunitas ekspor memberikan akses ke peluang yang lebih luas dan dukungan yang berharga.
-                </p>
+<!-- Keuntungan -->
+<section class="benefit-main-section">
+    <div class="container benefit-green-bg rounded-section">
+        <div class="benefit-header text-center py-5">
+            <p class="fw-bold mb-0 title-cta"><?= lang('Blog.benefitsJoinTitle'); ?></p>
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="border-top-small"></div>
             </div>
-            
-            <!-- Area tabs dengan rounded bottom -->
-            <div class="container manfaat-tabs-container">
-                <div class="row justify-content-center">
-                    <div class="col-12">
-                        <!-- Tabs Navigation -->
-                        <div class="benefits-tabs-navigation d-flex flex-wrap justify-content-center gap-3 mb-4">
-                            <button class="benefit-tab-btn active" data-tab="simulasi">
-                                <i class="fas fa-comments me-2"></i>
-                                Simulasi Wawancara Kerja
-                            </button>
-                            <button class="benefit-tab-btn" data-tab="tes-minat">
-                                <i class="fas fa-brain me-2"></i>
-                                Tes Minat & Bakat
-                            </button>
-                            <button class="benefit-tab-btn" data-tab="job-matching">
-                                <i class="fas fa-briefcase me-2"></i>
-                                Smart Job Matching
-                            </button>
-                            <button class="benefit-tab-btn" data-tab="position-fit">
-                                <i class="fas fa-chart-line me-2"></i>
-                                Position Fit Evaluation
-                            </button>
+            <p class="text-white mb-0 desc-cta">
+                <?= lang('Blog.benefitsJoinDescription'); ?>
+            </p>
+        </div>
+    </div>
+    
+    <!-- 3 Kotak Manfaat (Peluang Bisnis, Pelatihan, Sertifikat) -->
+    <div class="container manfaat-container">
+        <div class="manfaat row g-4 justify-content-center">
+            <?php foreach ($manfaatjoin as $manfaat): ?>
+                <div class="col-12 col-md-4 d-flex flex-column align-items-center text-center manfaat-item">
+                    <div class="benefit-icon-box">
+                        <?php if (!empty($manfaat['gambar'])): ?>
+                            <img src="<?= base_url('img/' . esc($manfaat['gambar'], 'url')); ?>" 
+                                 alt="Icon" 
+                                 class="benefit-icon-img" />
+                        <?php else: ?>
+                            <img src="<?= base_url('img/icons/default-icon.png'); ?>" 
+                                 alt="Default Icon" 
+                                 class="benefit-icon-img default-icon" />
+                        <?php endif; ?>
+                    </div>
+                    <div class="mt-3">
+                        <h6><b><?= ($lang == 'en') ? $manfaat['judul_manfaat_en'] : $manfaat['judul_manfaat']; ?></b></h6>
+                        <p><?= ($lang == 'en') ? $manfaat['deskripsi_manfaat_en'] : $manfaat['deskripsi_manfaat']; ?></p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    
+    <!-- Section 2: TABS INTERAKTIF (Simulasi Wawancara dll) -->
+    <div class="container manfaat-tabs-section py-5">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <!-- Tabs Navigation -->
+                <div class="benefits-tabs-navigation d-flex flex-wrap justify-content-center gap-3 mb-4">
+                    <button class="benefit-tab-btn active" data-tab="simulasi">
+                        <i class="fas fa-comments me-2"></i>
+                        Simulasi Wawancara Kerja
+                    </button>
+                    <button class="benefit-tab-btn" data-tab="tes-minat">
+                        <i class="fas fa-brain me-2"></i>
+                        Tes Minat & Bakat
+                    </button>
+                    <button class="benefit-tab-btn" data-tab="job-matching">
+                        <i class="fas fa-briefcase me-2"></i>
+                        Smart Job Matching
+                    </button>
+                    <button class="benefit-tab-btn" data-tab="position-fit">
+                        <i class="fas fa-chart-line me-2"></i>
+                        Position Fit Evaluation
+                    </button>
+                </div>
+                
+                <!-- Tabs Content Area -->
+                <div class="benefits-tabs-content">
+                    <!-- Tab 1: Simulasi Wawancara Kerja (Active by default) -->
+                    <div class="benefit-tab-pane active" id="tab-simulasi">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <div class="benefit-content-wrapper">
+                                    <h3 class="benefit-content-title">Simulasi Wawancara Kerja</h3>
+                                    <p class="benefit-content-desc">
+                                        Fitur simulasi wawancara kerja berkualitas tinggi yang dirancang menyerupai proses wawancara riil, membantu Anda mempersiapkan diri dengan lebih percaya diri.
+                                    </p>
+                                    <ul class="benefit-features-list">
+                                        <li>Setiap soal dilengkapi kunci jawaban dan pembahasan</li>
+                                        <li>Penilaian untuk membantu pengguna memahami kekuatan</li>
+                                        <li>Meningkatkan kualitas jawaban saat wawancara kerja</li>
+                                        <li>Membangun kepercayaan diri sebelum menghadapi wawancara sebenarnya</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="benefit-image-wrapper">
+                                    <img src="https://via.placeholder.com/550x400/6F4E37/FFFFFF?text=Simulasi+Wawancara" 
+                                         alt="Simulasi Wawancara Kerja" 
+                                         class="img-fluid rounded shadow">
+                                </div>
+                            </div>
                         </div>
-                        
-                        <!-- Tabs Content Area -->
-                        <div class="benefits-tabs-content">
-                            <!-- Tab 1: Simulasi Wawancara Kerja (Active by default) -->
-                            <div class="benefit-tab-pane active" id="tab-simulasi">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="benefit-content-wrapper">
-                                            <h3 class="benefit-content-title">Simulasi Wawancara Kerja</h3>
-                                            <p class="benefit-content-desc">
-                                                Fitur simulasi wawancara kerja berkualitas tinggi yang dirancang menyerupai proses wawancara riil, membantu Anda mempersiapkan diri dengan lebih percaya diri.
-                                            </p>
-                                            <ul class="benefit-features-list">
-                                                <li>Setiap soal dilengkapi kunci jawaban dan pembahasan</li>
-                                                <li>Penilaian untuk membantu pengguna memahami kekuatan</li>
-                                                <li>Meningkatkan kualitas jawaban saat wawancara kerja</li>
-                                                <li>Membangun kepercayaan diri sebelum menghadapi wawancara sebenarnya</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="benefit-image-wrapper">
-                                            <!-- Ganti dengan gambar yang sesuai -->
-                                            <img src="https://via.placeholder.com/550x400/0A5C36/FFFFFF?text=Simulasi+Wawancara" 
-                                                 alt="Simulasi Wawancara Kerja" 
-                                                 class="img-fluid rounded shadow">
-                                        </div>
-                                    </div>
+                    </div>
+                    
+                    <!-- Tab 2: Tes Minat & Bakat -->
+                    <div class="benefit-tab-pane" id="tab-tes-minat">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <div class="benefit-content-wrapper">
+                                    <h3 class="benefit-content-title">Tes Minat & Bakat</h3>
+                                    <p class="benefit-content-desc">
+                                        Temukan potensi terbaik dalam diri Anda dengan tes minat dan bakat yang komprehensif, memberikan insight mendalam tentang karir yang sesuai.
+                                    </p>
+                                    <ul class="benefit-features-list">
+                                        <li>Analisis mendalam tentang kepribadian dan minat</li>
+                                        <li>Rekomendasi karir berdasarkan potensi terbaik</li>
+                                        <li>Laporan detail dengan visualisasi yang mudah dipahami</li>
+                                        <li>Konsultasi hasil tes dengan ahli karir</li>
+                                    </ul>
                                 </div>
                             </div>
-                            
-                            <!-- Tab 2: Tes Minat & Bakat -->
-                            <div class="benefit-tab-pane" id="tab-tes-minat">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="benefit-content-wrapper">
-                                            <h3 class="benefit-content-title">Tes Minat & Bakat</h3>
-                                            <p class="benefit-content-desc">
-                                                Temukan potensi terbaik dalam diri Anda dengan tes minat dan bakat yang komprehensif, memberikan insight mendalam tentang karir yang sesuai.
-                                            </p>
-                                            <ul class="benefit-features-list">
-                                                <li>Analisis mendalam tentang kepribadian dan minat</li>
-                                                <li>Rekomendasi karir berdasarkan potensi terbaik</li>
-                                                <li>Laporan detail dengan visualisasi yang mudah dipahami</li>
-                                                <li>Konsultasi hasil tes dengan ahli karir</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="benefit-image-wrapper">
-                                            <img src="https://via.placeholder.com/550x400/0A5C36/FFFFFF?text=Tes+Minat+Bakat" 
-                                                 alt="Tes Minat & Bakat" 
-                                                 class="img-fluid rounded shadow">
-                                        </div>
-                                    </div>
+                            <div class="col-md-6">
+                                <div class="benefit-image-wrapper">
+                                    <img src="https://via.placeholder.com/550x400/6F4E37/FFFFFF?text=Tes+Minat+Bakat" 
+                                         alt="Tes Minat & Bakat" 
+                                         class="img-fluid rounded shadow">
                                 </div>
                             </div>
-                            
-                            <!-- Tab 3: Smart Job Matching -->
-                            <div class="benefit-tab-pane" id="tab-job-matching">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="benefit-content-wrapper">
-                                            <h3 class="benefit-content-title">Smart Job Matching</h3>
-                                            <p class="benefit-content-desc">
-                                                Sistem pintar yang menghubungkan Anda dengan peluang kerja terbaik berdasarkan skill, pengalaman, dan preferensi karir Anda.
-                                            </p>
-                                            <ul class="benefit-features-list">
-                                                <li>Algoritma matching cerdas dengan akurasi tinggi</li>
-                                                <li>Rekomendasi pekerjaan yang relevan dengan profil Anda</li>
-                                                <li>Notifikasi real-time untuk lowongan terbaru</li>
-                                                <li>Akses ke perusahaan partner yang berkualitas</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="benefit-image-wrapper">
-                                            <img src="https://via.placeholder.com/550x400/0A5C36/FFFFFF?text=Job+Matching" 
-                                                 alt="Smart Job Matching" 
-                                                 class="img-fluid rounded shadow">
-                                        </div>
-                                    </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab 3: Smart Job Matching -->
+                    <div class="benefit-tab-pane" id="tab-job-matching">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <div class="benefit-content-wrapper">
+                                    <h3 class="benefit-content-title">Smart Job Matching</h3>
+                                    <p class="benefit-content-desc">
+                                        Sistem pintar yang menghubungkan Anda dengan peluang kerja terbaik berdasarkan skill, pengalaman, dan preferensi karir Anda.
+                                    </p>
+                                    <ul class="benefit-features-list">
+                                        <li>Algoritma matching cerdas dengan akurasi tinggi</li>
+                                        <li>Rekomendasi pekerjaan yang relevan dengan profil Anda</li>
+                                        <li>Notifikasi real-time untuk lowongan terbaru</li>
+                                        <li>Akses ke perusahaan partner yang berkualitas</li>
+                                    </ul>
                                 </div>
                             </div>
-                            
-                            <!-- Tab 4: Position Fit Evaluation -->
-                            <div class="benefit-tab-pane" id="tab-position-fit">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="benefit-content-wrapper">
-                                            <h3 class="benefit-content-title">Position Fit Evaluation</h3>
-                                            <p class="benefit-content-desc">
-                                                Evaluasi kesesuaian posisi yang membantu Anda dan perusahaan memahami seberapa baik Anda cocok dengan peran yang ditawarkan.
-                                            </p>
-                                            <ul class="benefit-features-list">
-                                                <li>Analisis kesesuaian skill dengan kebutuhan posisi</li>
-                                                <li>Prediksi performa berdasarkan karakteristik pribadi</li>
-                                                <li>Rekomendasi pengembangan kompetensi yang dibutuhkan</li>
-                                                <li>Laporan komprehensif untuk pengambilan keputusan</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="benefit-image-wrapper">
-                                            <img src="https://via.placeholder.com/550x400/0A5C36/FFFFFF?text=Position+Fit" 
-                                                 alt="Position Fit Evaluation" 
-                                                 class="img-fluid rounded shadow">
-                                        </div>
-                                    </div>
+                            <div class="col-md-6">
+                                <div class="benefit-image-wrapper">
+                                    <img src="https://via.placeholder.com/550x400/6F4E37/FFFFFF?text=Job+Matching" 
+                                         alt="Smart Job Matching" 
+                                         class="img-fluid rounded shadow">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab 4: Position Fit Evaluation -->
+                    <div class="benefit-tab-pane" id="tab-position-fit">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <div class="benefit-content-wrapper">
+                                    <h3 class="benefit-content-title">Position Fit Evaluation</h3>
+                                    <p class="benefit-content-desc">
+                                        Evaluasi kesesuaian posisi yang membantu Anda dan perusahaan memahami seberapa baik Anda cocok dengan peran yang ditawarkan.
+                                    </p>
+                                    <ul class="benefit-features-list">
+                                        <li>Analisis kesesuaian skill dengan kebutuhan posisi</li>
+                                        <li>Prediksi performa berdasarkan karakteristik pribadi</li>
+                                        <li>Rekomendasi pengembangan kompetensi yang dibutuhkan</li>
+                                        <li>Laporan komprehensif untuk pengambilan keputusan</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="benefit-image-wrapper">
+                                    <img src="https://via.placeholder.com/550x400/6F4E37/FFFFFF?text=Position+Fit" 
+                                         alt="Position Fit Evaluation" 
+                                         class="img-fluid rounded shadow">
                                 </div>
                             </div>
                         </div>
@@ -1591,7 +1810,6 @@ $this->setData([
         <p class="text-light desc-cta">
             <?= ($lang == 'en') ? $webprofile[0]['deskripsi_ajakan_en'] : $webprofile[0]['deskripsi_ajakan'] ?>
         </p>
-
     </div>
 </section>
 
@@ -1605,7 +1823,7 @@ $this->setData([
         </div>
         <div class="fw-bold title-cta">
             <?= lang('Blog.chooseTitle'); ?>
-            <span style="color: #0A5C36;"><?= lang('Blog.forYouTitle'); ?></span>
+            <span style="color: #6F4E37;"><?= lang('Blog.forYouTitle'); ?></span>
         </div>
     </div>
 
@@ -1630,7 +1848,7 @@ $this->setData([
                     </div>
                 </div>
                 <div class="card-footer bg-light py-3">
-                    <button class="btn btn-primary btn-sm">
+                    <button class="btn btn-outline-secondary btn-sm" disabled>
                         <?= lang('Blog.currentPackage'); ?>
                     </button>
                 </div>
@@ -1660,9 +1878,10 @@ $this->setData([
                     </div>
                 </div>
                 <div class="card-footer bg-light py-3">
-                    <button class="btn btn-primary btn-sm"><?php echo lang('Blog.currentPackage'); ?></button>
+                    <button class="btn btn-primary btn-sm">
+                        <?= lang('Blog.currentPackage'); ?>
+                    </button>
                 </div>
-
             </div>
         </div>
     </div>
@@ -1722,6 +1941,21 @@ $this->setData([
     map.addLayer(markers);
 
     document.addEventListener('DOMContentLoaded', function() {
+    var carousel = document.querySelector('#carouselExampleDark');
+    if (carousel) {
+        // Inisialisasi carousel dengan autoplay 2 detik
+        var carouselInstance = new bootstrap.Carousel(carousel, {
+            interval: 2000, // 2 detik
+            wrap: true,
+            pause: false
+        });
+        
+        // Mulai autoplay
+        carouselInstance.cycle();
+    }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
         // Get all tab buttons
         const tabButtons = document.querySelectorAll('.benefit-tab-btn');
         const tabPanes = document.querySelectorAll('.benefit-tab-pane');
@@ -1758,7 +1992,7 @@ $this->setData([
             switchTab('simulasi');
         }
     });
-    
+
 </script>
 
 <?= $this->endSection(); ?>

@@ -21,27 +21,33 @@
 
     <style>
         /* =========================
-        1) Design tokens (global)
+        1) Design tokens (global) - SAMA DENGAN VISITOR
         ========================= */
         :root {
-            --c-primary: #0A5C36;
-            --c-accent: #D4AF37;
-            --c-text: #111;
-            --c-white: #fff;
+            --bs-primary: #6F4E37;        /* Coffee Bean untuk elemen utama */
+            --bs-warning: #D99A6C;        /* Light Bronze untuk aksen */
+            --bs-body-bg: #FED8B1;        /* Soft Apricot untuk background body */
+            --c-primary: #6F4E37;          /* Coffee Bean */
+            --c-accent: #D99A6C;           /* Light Bronze */
+            --c-secondary: #A67B5B;        /* Faded Copper untuk elemen sekunder */
+            --c-text: #2D1B10;            /* Deep Cocoa untuk teks */
+            --c-white: #ffffff;           /* Pure White */
 
             --icon-size: 13px;
             --text-size: 13px;
-            --nav-text-size: 15px;
+            --nav-text-size: 17px;
 
+            --flag-w: 20px;
+            --flag-h: 14px;
             --lang-btn-w: 60px;
             --lang-btn-h: 25px;
 
-            --footer-gap-h: 40px;
-            --footer-gap-wrap: 40px;
+            --footer-gap-h: 90px;
+            --footer-gap-wrap: 91px;
         }
 
         /* =========================
-        2) Layout helpers
+        2) Layout helpers - SAMA DENGAN VISITOR
         ========================= */
         .header .container,
         .navbar-custom .container,
@@ -55,16 +61,21 @@
             width: 1.5px;
             height: 40px;
             background: #fff;
-            margin: 0 15px;
+            margin: 0 15px 0 0;
             flex: 0 0 auto;
         }
 
+        .divider-vert--sm {
+            height: 20px;
+            margin: 0 16px;
+            background: rgba(255, 255, 255, .8);
+        }
 
         /* =========================
-        3) Topbar (kuning)
+        3) Topbar (Light Bronze) - SAMA DENGAN VISITOR
         ========================= */
         .topbar {
-            background: var(--c-accent);
+            background: var(--c-accent); /* Light Bronze */
             color: var(--c-white);
         }
 
@@ -120,12 +131,82 @@
             transform: scale(1.1);
         }
 
+        .topbar .language-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: var(--lang-btn-w);
+            height: var(--lang-btn-h);
+            padding: 0;
+            background: transparent;
+            border: 1px solid var(--c-white);
+            border-radius: 6px;
+            color: var(--c-white);
+            transition: background .3s, border-color .3s, transform .2s;
+        }
+
+        .topbar .language-btn:hover {
+            background: var(--c-primary); /* Coffee Bean */
+            border-color: var(--c-primary);
+            transform: translateY(-1px);
+        }
+
+        .topbar .flag-icon {
+            width: var(--flag-w);
+            height: var(--flag-h);
+            object-fit: cover;
+            display: block;
+            transition: transform .3s;
+        }
+
+        .topbar .language-btn:hover .flag-icon {
+            transform: scale(1.05);
+        }
+
+        #languageDropdown i {
+            font-size: 12px;
+            color: var(--c-white);
+            line-height: 1;
+        }
+
+        .topbar .dropdown-menu {
+            position: absolute;
+            z-index: 1050;
+            border-radius: 8px;
+            overflow: hidden;
+            right: 0;
+            left: auto;
+            top: 100%;
+        }
+
+        .topbar .dropdown-item {
+            color: var(--c-text); /* Deep Cocoa */
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            transition: color .2s, background .2s;
+        }
+
+        .topbar .dropdown-item img.flag-icon {
+            width: var(--flag-w);
+            height: var(--flag-h);
+            object-fit: cover;
+            flex: 0 0 auto;
+        }
+
+        .topbar .dropdown-item:hover {
+            color: #ECB176; /* Light Caramel */
+            background: rgba(0, 0, 0, .04);
+        }
 
         /* =========================
-        4) Navbar (biru)
+        4) Navbar (Coffee Bean) - SAMA DENGAN VISITOR
         ========================= */
         .navbar-custom {
-            background: var(--c-primary);
+            background: var(--c-primary); /* Coffee Bean */
             transition: background-color .3s, padding 1s;
         }
 
@@ -133,7 +214,7 @@
             padding: 13px 0;
             border-bottom: inset;
             border-width: 5px;
-            border-color: var(--c-accent);
+            border-color: #ECB176; /* Light Caramel */
         }
 
         .navbar-custom .container {
@@ -156,7 +237,7 @@
         .navbar .dropdown-item {
             color: var(--c-white);
             font-weight: 500;
-            /* padding: 10px 15px; */
+            padding: 10px 15px;
             position: relative;
             transition: color .3s;
             font-size: var(--nav-text-size);
@@ -164,7 +245,7 @@
 
         .navbar .navbar-nav .nav-link:hover,
         .navbar .dropdown-item:hover {
-            color: #06B6D4;
+            color: #ECB176; /* Light Caramel */
         }
 
         /* underline animasi */
@@ -176,7 +257,7 @@
             bottom: 0;
             width: 0;
             height: 3px;
-            background: #06B6D4;
+            background: #ECB176; /* Light Caramel */
             visibility: hidden;
             transition: all .3s;
             transform: translateX(-50%);
@@ -201,12 +282,12 @@
         }
 
         .navbar .dropdown-menu .dropdown-item {
-            color: var(--c-text);
+            color: var(--c-text); /* Deep Cocoa */
             background: var(--c-white);
         }
 
         .navbar .dropdown-menu .dropdown-item:hover {
-            color: #06B6D4;
+            color: #ECB176; /* Light Caramel */
             background: rgba(0, 0, 0, .04);
         }
 
@@ -229,7 +310,7 @@
         }
 
         .login-btn:hover {
-            background: rgba(255, 255, 255, .12);
+            background: rgba(236, 177, 118, .12); /* Light Caramel dengan transparansi */
         }
 
         .navbar-toggler {
@@ -254,7 +335,7 @@
         }
 
         .navbar-toggler:hover {
-            background: rgba(255, 255, 255, .12);
+            background: rgba(236, 177, 118, .12); /* Light Caramel dengan transparansi */
             border-color: var(--c-white);
         }
 
@@ -263,7 +344,7 @@
         }
 
         /* =========================
-        5) Footer (global)
+        5) Footer (global) - SAMA DENGAN VISITOR
         ========================= */
         .footer-wrap {
             display: flex;
@@ -292,6 +373,7 @@
             font-weight: 500;
             width: 600px;
             font-size: var(--nav-text-size);
+            color: var(--c-text); /* Deep Cocoa */
         }
 
         .social-big {
@@ -342,34 +424,40 @@
             opacity: 0;
         }
 
+        /* Instagram dengan gradient asli */
         .instagram {
-            background: linear-gradient(45deg, #0F172A 0%, #0F172A 25%, #0F172A 50%, #0F172A 75%, #0F172A 100%);
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
 
+        /* YouTube dengan warna merah asli */
         .youtube {
-            background: #0F172A;
+            background: #ff0000;
         }
 
+        /* Facebook dengan warna Coffee Bean */
         .facebook {
-            background: blue;
+            background: var(--c-primary); /* Coffee Bean */
         }
 
         .facebook:hover {
-            background: darkblue;
+            background: #5a3e2c; /* Coffee Bean yang lebih gelap */
         }
 
         .bottom-footer-bar {
-            background: var(--c-accent);
+            background: var(--c-accent); /* Light Bronze */
             padding: 12px 0;
         }
 
-        .container.bottom-footer {
+        .bottom-footer-bar p {
             margin: 0;
             text-align: center;
+            color: #fff;
+            font-size: var(--nav-text-size);
+            font-weight: 500;
         }
 
         /* =========================
-        6) WhatsApp Float
+        6) WhatsApp Float - SAMA DENGAN VISITOR
         ========================= */
         .whatsapp-float {
             position: fixed;
@@ -377,24 +465,24 @@
             height: 50px;
             bottom: 20px;
             right: 30px;
-            background: #0F172A;
+            background: #25d366;
             color: #fff;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 30px;
-            box-shadow: 2px 2px 3px #0F172A;
+            box-shadow: 2px 2px 3px #999;
             z-index: 1100;
         }
 
         .whatsapp-float:hover {
-            background: #0F172A;
+            background: #128c7e;
             text-decoration: none;
         }
 
         /* =========================
-        7) Footer links underline
+        7) Footer links underline - SAMA DENGAN VISITOR
         ========================= */
         .footer-link {
             color: #fff;
@@ -404,7 +492,7 @@
         }
 
         .footer-link:hover {
-            color: #06B6D4;
+            color: #ECB176; /* Light Caramel */
         }
 
         .footer-link::after {
@@ -414,7 +502,7 @@
             bottom: -5px;
             width: 0;
             height: 2px;
-            background: #06B6D4;
+            background: #ECB176; /* Light Caramel */
             transition: width .3s;
         }
 
@@ -423,18 +511,18 @@
         }
 
         /* =========================
-        8) Section helpers
+        8) Section helpers - SAMA DENGAN VISITOR
         ========================= */
         .section--navbar {
-            background: var(--c-primary);
+            background: var(--c-primary); /* Coffee Bean */
         }
 
         .section--topbar {
-            background: var(--c-accent);
+            background: var(--c-accent); /* Light Bronze */
         }
 
         /* =========================================================
-        9) BREAKPOINTS
+        9) BREAKPOINTS - SAMA DENGAN VISITOR
         ========================================================= */
 
         /* ≤ 991px: mobile navbar dropdown + footer jadi kolom */
@@ -446,12 +534,6 @@
 
             .navbar .navbar-nav .nav-link {
                 padding: 5px 5px;
-            }
-
-            .nav-item {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
             }
 
             .navbar .navbar-nav .nav-link::before,
@@ -472,7 +554,7 @@
             }
 
             .navbar .dropdown-menu .dropdown-item {
-                color: var(--c-accent) !important;
+                color: #ECB176 !important; /* Light Caramel */
                 background: transparent !important;
                 font-size: 13px !important;
                 border-bottom: 1px solid rgba(255, 255, 255, .1);
@@ -562,12 +644,7 @@
                 width: auto;
                 max-width: 92vw;
                 text-align: justify;
-            }
-
-            /* underline parent nav saat dropdown mobile (diaktifkan via JS) */
-            .navbar .nav-item.dropdown>.nav-link.is-open::before {
-                visibility: visible;
-                width: 100%;
+                color: var(--c-text); /* Deep Cocoa */
             }
         }
 
@@ -576,11 +653,56 @@
             :root {
                 --icon-size: 12px;
                 --text-size: 12px;
-                --nav-text-size: 13px;
+                --nav-text-size: 15px;
+                --flag-w: 18px;
+                --flag-h: 12px;
                 --lang-btn-w: 45px;
                 --lang-btn-h: 20px;
                 --footer-gap-h: 10px;
                 --footer-gap-wrap: 10px;
+            }
+
+            .topbar .icon .d-flex {
+                flex-direction: row;
+                gap: 4px !important;
+            }
+
+            .topbar .icon .ms-2 {
+                margin-left: 0 !important;
+            }
+
+            .divider-vert--sm {
+                margin: 0 8px !important;
+            }
+
+            .topbar .language-btn {
+                height: var(--lang-btn-h);
+                padding: 0 6px;
+                gap: 4px;
+            }
+
+            .topbar .dropdown-menu {
+                right: 0;
+                left: auto;
+                min-width: 130px;
+                max-width: 180px;
+                padding: 6px;
+                border-radius: 8px;
+                transform-origin: top right;
+                max-height: 50vh;
+                overflow-y: auto;
+            }
+
+            .topbar .dropdown-item {
+                padding: 6px 10px;
+                font-size: 11px;
+                line-height: 1.15;
+                gap: 8px;
+            }
+
+            .topbar .dropdown-item .flag-icon {
+                width: 16px;
+                height: 11px;
             }
         }
 
@@ -589,7 +711,9 @@
             :root {
                 --icon-size: 11px;
                 --text-size: 11px;
-                --nav-text-size: 12px;
+                --nav-text-size: 13px;
+                --flag-w: 16px;
+                --flag-h: 10px;
                 --lang-btn-w: 28px;
                 --lang-btn-h: 20px;
                 --footer-gap-h: 8px;
@@ -625,8 +749,23 @@
                 font-size: 15px !important;
             }
 
+            .divider-vert--sm {
+                margin: 0 8px !important;
+            }
+
+            .divider-vert--sm,
+            #languageDropdown .bi-chevron-down {
+                display: none !important;
+            }
+
             .kei {
                 max-width: 110px;
+            }
+
+            .topbar .language-btn {
+                height: var(--lang-btn-h);
+                padding: 0 6px;
+                gap: 4px;
             }
 
             .navbar .dropdown-menu .dropdown-item {
@@ -651,7 +790,9 @@
             :root {
                 --icon-size: 9px;
                 --text-size: 9px;
-                --nav-text-size: 11px;
+                --nav-text-size: 12px;
+                --flag-w: 16px;
+                --flag-h: 12px;
                 --lang-btn-w: 28px;
                 --lang-btn-h: 20px;
                 --footer-gap-h: 12px;
@@ -685,6 +826,16 @@
                 height: 1.5px;
             }
 
+            /* underline parent nav saat dropdown mobile (diaktifkan via JS) */
+            .navbar .nav-item.dropdown>.nav-link.is-open::before {
+                visibility: visible;
+                width: 100%;
+            }
+
+            .navbar .dropdown-menu .dropdown-item {
+                font-size: 8px !important;
+            }
+
             .login-btn {
                 margin-top: 6px;
                 max-width: 50px;
@@ -694,6 +845,12 @@
             .navbar-toggler .navbar-toggler-icon {
                 width: .7em;
                 height: 1.2em;
+            }
+
+            /* Footer extra tweak */
+            .social-big p {
+                display: inline-block;
+                margin: 0;
             }
 
             .instagram,
@@ -714,7 +871,9 @@
             :root {
                 --icon-size: 8px;
                 --text-size: 8px;
-                --nav-text-size: 9px;
+                --nav-text-size: 10px;
+                --flag-w: 14px;
+                --flag-h: 10px;
                 --lang-btn-w: 24px;
                 --lang-btn-h: 18px;
                 --footer-gap-h: 12px;
@@ -724,10 +883,6 @@
             .navbar-toggler .navbar-toggler-icon {
                 width: .7em;
                 height: 1.1em;
-            }
-
-            .navbar .dropdown-menu .dropdown-item {
-                font-size: 8px !important;
             }
 
             .logo-footer {
@@ -755,12 +910,18 @@
     $hasLangSeg    = in_array($firstSegment, ['id', 'en'], true);
     $lang_segment  = $hasLangSeg ? ($firstSegment . '/') : '';
 
-    // Link statis (mengikuti kode 1)
-    $homeLink          = 'beranda';
-    $aboutLink         = ($lang_segment === 'en/') ? 'about-us'         : 'tentang-kami';
-    $belajarEksporLink = ($lang_segment === 'en/') ? 'lessons'          : 'materi';
-    $pendaftaranLink   = ($lang_segment === 'en/') ? 'registration'     : 'pendaftaran';
-    $videoTutorialLink = ($lang_segment === 'en/') ? 'videos'           : 'video';
+    // ===== SEMUA LINK YANG DIBUTUHKAN =====
+    // Link untuk dropdown "Artikel" (sama dengan visitor - 6 item)
+    $homeLink                  = 'beranda';
+    $aboutLink                 = ($lang_segment === 'en/') ? 'about-us'         : 'tentang-kami';
+    $belajarEksporLink         = ($lang_segment === 'en/') ? 'lessons'          : 'materi';
+    $videoTutorialLink         = ($lang_segment === 'en/') ? 'videos'           : 'video';
+    $simulasiWawancaraLink     = ($lang_segment === 'en/') ? 'interview-simulation' : 'simulasi-wawancara';
+    $testMinatBakatLink        = 'test-minat-bakat';
+    $smartJobMatchingLink      = 'smart-job-matching';
+    $positionFitEvaluationLink = 'position-fit-evaluation';
+    
+    // Link khusus member
     $memberLink        = 'data-member';
     $buyersLink        = 'data-buyers';
     $kalkulatorLink    = ($lang_segment === 'en/') ? 'calculator-export' : 'kalkulator-ekspor';
@@ -787,7 +948,7 @@
     <header class="header topbar section--topbar">
         <div class="container">
             <div class="head d-flex justify-content-between align-items-center py-2" style="width:100%;">
-                <!-- Kontak kiri -->
+                <!-- Kontak kiri - SAMA DENGAN VISITOR -->
                 <div class="icon">
                     <div class="d-flex align-items-center gap-1 icon-text text-light">
                         <i class="fas fa-phone"></i>
@@ -801,7 +962,7 @@
                     </div>
                 </div>
 
-                <!-- Sosmed + Bahasa -->
+                <!-- Sosmed - SAMA DENGAN VISITOR -->
                 <div class="d-flex align-items-center">
                     <div class="sosmed">
                         <a href="<?= esc($profile['link_ig_web']) ?>" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
@@ -814,14 +975,12 @@
                             <i class="fab fa-facebook"></i>
                         </a>
                     </div>
-
                 </div>
-                <!-- End kanan -->
             </div>
         </div>
     </header>
 
-    <!-- ================= Navbar (pakai menu Kode 1, style Kode 2) ================= -->
+    <!-- ================= Navbar ================= -->
     <nav class="navbar navbar-custom navbar-expand-lg sticky-top section--navbar">
         <div class="container d-flex justify-content-between align-items-center py-1">
             <a href="<?= base_url('/' . $homeLink) ?>" class="d-inline-block">
@@ -834,7 +993,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse line" id="navbarNavDropdown">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto d-flex align-items-center">
                     <!-- Beranda -->
                     <li class="nav-item">
@@ -850,7 +1009,7 @@
                         </a>
                     </li>
 
-                    <!-- Artikel (Materi + Video) -->
+                    <!-- Artikel (SAMA DENGAN VISITOR - 6 ITEM) -->
                     <li class="nav-item dropdown">
                         <button class="btn nav-link text-light" data-bs-toggle="dropdown" aria-expanded="false">
                             <?= lang('Blog.headerArtikel'); ?>
@@ -858,12 +1017,34 @@
                         <ul class="dropdown-menu dropdown-menu-light">
                             <li>
                                 <a class="dropdown-item nav-link d-flex" href="<?= base_url('/' . $belajarEksporLink) ?>">
-                                    <?= lang('Blog.headerMateri'); ?>
+                                    <i class="fas fa-book me-2"></i><?= lang('Blog.headerMateri'); ?>
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item nav-link d-flex" href="<?= base_url('/' . $videoTutorialLink) ?>">
-                                    <?= lang('Blog.headerVideo'); ?>
+                                    <i class="fas fa-video me-2"></i><?= lang('Blog.headerVideo'); ?>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item nav-link d-flex" href="<?= base_url('/' . $simulasiWawancaraLink) ?>">
+                                    <i class="fas fa-comments me-2"></i><?= ($lang == 'id') ? 'Simulasi Wawancara' : 'Interview Simulation' ?>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item nav-link d-flex" href="<?= base_url('/' . $testMinatBakatLink) ?>">
+                                    <i class="fas fa-brain me-2"></i><?= ($lang == 'id') ? 'Test Minat & Bakat' : 'Interest & Talent Test' ?>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item nav-link d-flex" href="<?= base_url('/' . $smartJobMatchingLink) ?>">
+                                    <i class="fas fa-briefcase me-2"></i>
+                                    <?php echo ($lang == 'id') ? 'Smart Job Matching' : 'Smart Job Matching'; ?>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item nav-link d-flex" href="<?= base_url('/' . $positionFitEvaluationLink) ?>">
+                                    <i class="fas fa-chart-line me-2"></i>
+                                    <?php echo ($lang == 'id') ? 'Position Fit Evaluation' : 'Position Fit Evaluation'; ?>
                                 </a>
                             </li>
                         </ul>
@@ -876,16 +1057,7 @@
                         </a>
                     </li>
 
-                    <!-- Buyers (opsional, masih dikomentari di kode 1) -->
-                    <!--
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/' . $buyersLink) ?>">
-                            <?= lang('Blog.headerBuyers'); ?>
-                        </a>
-                    </li>
-                    -->
-
-                    <!-- Aplikasi dropdown (Kalkulator, MPM, Sosmed Planner) -->
+                    <!-- Aplikasi dropdown -->
                     <li class="nav-item dropdown">
                         <button class="btn nav-link text-light" data-bs-toggle="dropdown" aria-expanded="false">
                             <?= lang('Blog.headerAplikasi'); ?>
@@ -893,17 +1065,17 @@
                         <ul class="dropdown-menu dropdown-menu-light">
                             <li>
                                 <a class="dropdown-item nav-link d-flex" href="<?= base_url('/' . $kalkulatorLink) ?>">
-                                    <?= lang('Blog.headerApp1'); ?>
+                                    <i class="fas fa-calculator me-2"></i><?= lang('Blog.headerApp1'); ?>
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item nav-link d-flex" href="<?= base_url('/' . $mpmLink) ?>">
-                                    <?= lang('Blog.headerApp2'); ?>
+                                    <i class="fas fa-chart-line me-2"></i><?= lang('Blog.headerApp2'); ?>
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item nav-link d-flex" href="<?= base_url('/' . $sosmedPlannerLink) ?>">
-                                    <?= lang('Blog.headerApp5'); ?>
+                                    <i class="fas fa-calendar-alt me-2"></i><?= lang('Blog.headerApp5'); ?>
                                 </a>
                             </li>
                         </ul>
@@ -912,63 +1084,54 @@
                     <!-- Pengumuman -->
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('/' . $pengumumanLink) ?>">
-                            <?= lang('Blog.headerPengumuman'); ?>
+                            <i class="fas fa-bullhorn me-1"></i><?= lang('Blog.headerPengumuman'); ?>
                         </a>
                     </li>
 
                     <!-- Edit Profile -->
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('/' . $editprofileLink); ?>">
-                            <?= lang('Blog.headerEditProfile'); ?>
+                            <i class="fas fa-user-edit me-1"></i><?= lang('Blog.headerEditProfile'); ?>
                         </a>
                     </li>
 
-                    <!-- Divider di depan login/user -->
+                    <!-- Divider -->
                     <div class="divider-vert d-none d-lg-block"></div>
-                </ul>
 
-                <!-- Login / User dropdown -->
-                <?php if (session()->get('logged_in')): ?>
-                    <div class=" navbar-nav">
-                        <div class="nav-item dropdown">
-                            <div class=" btn nav-link d-flex align-items-center gap-1" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <!-- User dropdown untuk member/admin yang sudah login -->
+                    <?php if (session()->get('logged_in')): ?>
+                        <li class="nav-item dropdown">
+                            <button class="btn nav-link d-flex align-items-center gap-1" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi bi-person-circle" style="font-size: 20px;"></i>
                                 <i><?= esc(session()->get('username')) ?></i>
-                            </div>
-
-                            <?php if (session()->get('role') == 'admin'): ?>
-                                <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                            </button>
+                            
+                            <ul class="dropdown-menu dropdown-menu-light">
+                                <?php if (session()->get('role') == 'admin'): ?>
                                     <li>
-                                        <a class="dropdown-item" href="<?= base_url('/admin-dashboard') ?>">
-                                            <i class="bi bi-speedometer2" style="color: #0F172A; font-size: 20px;"></i>
+                                        <a class="dropdown-item nav-link d-flex" href="<?= base_url('/admin-dashboard') ?>">
+                                            <i class="bi bi-speedometer2 me-2" style="color: var(--c-primary); font-size: 20px;"></i>
                                             <?= esc(session()->get('username')) ?>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item" href="<?= base_url('/logout') ?>">
-                                            <i class="bi bi-box-arrow-in-left" style="color: red; font-size: 20px;"></i>
-                                            Logout
-                                        </a>
-                                    </li>
-                                </ul>
-                            <?php else: ?>
-                                <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                                    <li>
-                                        <a class="dropdown-item" href="<?= base_url('/logout') ?>">
-                                            <i class="bi bi-box-arrow-in-left" style="color: red; font-size: 20px;"></i>
-                                            Logout
-                                        </a>
-                                    </li>
-                                </ul>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                <?php else: ?>
-                    <!-- Jika belum login -->
-                    <a href="<?= base_url('/id/login') ?>" class="text-decoration-none ms-2">
-                        <span class="login-btn">Login</span>
-                    </a>
-                <?php endif; ?>
+                                <?php endif; ?>
+                                <li>
+                                    <a class="dropdown-item nav-link d-flex" href="<?= base_url('/logout') ?>">
+                                        <i class="bi bi-box-arrow-in-left me-2" style="color: red; font-size: 20px;"></i>
+                                        <?= lang('Blog.headerLogout'); ?>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    <?php else: ?>
+                        <!-- Jika belum login -->
+                        <li class="nav-item">
+                            <a href="<?= base_url('/login') ?>" class="text-decoration-none">
+                                <span class="login-btn"><?= lang('Blog.headerMasuk'); ?></span>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
             </div>
         </div>
     </nav>
@@ -998,59 +1161,91 @@
                         </p>
                     </div>
                     
-                    <!-- Menu Links (Tengah) -->
+                    <!-- Menu Links (Tengah) - SEMUA FITUR LENGKAP -->
                     <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
                         <h5 class="fw-bold mb-3" style="color: var(--c-accent); font-size: 1.1rem;">
                             <?= ($lang === 'en') ? 'Menu' : 'Menu' ?>
                         </h5>
                         <ul class="list-unstyled">
+                            <!-- Beranda -->
                             <li class="mb-2">
                                 <a href="<?= base_url('/' . $homeLink) ?>" 
                                    class="footer-link" 
                                    style="opacity: 0.8; text-decoration: none; font-size: 0.95rem; display: block; padding: 4px 0;">
-                                    <?= lang('Blog.headerBeranda'); ?>
+                                    <i class="fas fa-home me-2"></i><?= lang('Blog.headerBeranda'); ?>
                                 </a>
                             </li>
+                            <!-- Tentang Kami -->
                             <li class="mb-2">
                                 <a href="<?= base_url('/' . $aboutLink) ?>" 
                                    class="footer-link" 
                                    style="opacity: 0.8; text-decoration: none; font-size: 0.95rem; display: block; padding: 4px 0;">
-                                    <?= lang('Blog.headerTentang'); ?>
+                                    <i class="fas fa-info-circle me-2"></i><?= lang('Blog.headerTentang'); ?>
                                 </a>
                             </li>
+                            <!-- Artikel Dropdown Items -->
                             <li class="mb-2">
                                 <a href="<?= base_url('/' . $belajarEksporLink) ?>" 
                                    class="footer-link" 
                                    style="opacity: 0.8; text-decoration: none; font-size: 0.95rem; display: block; padding: 4px 0;">
-                                    <?= lang('Blog.headerMateri'); ?>
+                                    <i class="fas fa-book me-2"></i><?= lang('Blog.headerMateri'); ?>
                                 </a>
                             </li>
                             <li class="mb-2">
                                 <a href="<?= base_url('/' . $videoTutorialLink) ?>" 
                                    class="footer-link" 
                                    style="opacity: 0.8; text-decoration: none; font-size: 0.95rem; display: block; padding: 4px 0;">
-                                    <?= lang('Blog.headerVideo'); ?>
+                                    <i class="fas fa-video me-2"></i><?= lang('Blog.headerVideo'); ?>
                                 </a>
                             </li>
+                            <li class="mb-2">
+                                <a href="<?= base_url('/' . $simulasiWawancaraLink) ?>" 
+                                   class="footer-link" 
+                                   style="opacity: 0.8; text-decoration: none; font-size: 0.95rem; display: block; padding: 4px 0;">
+                                    <i class="fas fa-comments me-2"></i><?= ($lang == 'id') ? 'Simulasi Wawancara' : 'Interview Simulation' ?>
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="<?= base_url('/' . $testMinatBakatLink) ?>" 
+                                   class="footer-link" 
+                                   style="opacity: 0.8; text-decoration: none; font-size: 0.95rem; display: block; padding: 4px 0;">
+                                    <i class="fas fa-brain me-2"></i><?= ($lang == 'id') ? 'Test Minat & Bakat' : 'Interest & Talent Test' ?>
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="<?= base_url('/' . $smartJobMatchingLink) ?>" 
+                                   class="footer-link" 
+                                   style="opacity: 0.8; text-decoration: none; font-size: 0.95rem; display: block; padding: 4px 0;">
+                                    <i class="fas fa-briefcase me-2"></i><?php echo ($lang == 'id') ? 'Smart Job Matching' : 'Smart Job Matching'; ?>
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="<?= base_url('/' . $positionFitEvaluationLink) ?>" 
+                                   class="footer-link" 
+                                   style="opacity: 0.8; text-decoration: none; font-size: 0.95rem; display: block; padding: 4px 0;">
+                                    <i class="fas fa-chart-line me-2"></i><?php echo ($lang == 'id') ? 'Position Fit Evaluation' : 'Position Fit Evaluation'; ?>
+                                </a>
+                            </li>
+                            <!-- Fitur Khusus Member -->
                             <li class="mb-2">
                                 <a href="<?= base_url('/' . $memberLink) ?>" 
                                    class="footer-link" 
                                    style="opacity: 0.8; text-decoration: none; font-size: 0.95rem; display: block; padding: 4px 0;">
-                                    <?= lang('Blog.headerMember'); ?>
+                                    <i class="fas fa-users me-2"></i><?= lang('Blog.headerMember'); ?>
                                 </a>
                             </li>
                             <li class="mb-2">
                                 <a href="<?= base_url('/' . $pengumumanLink) ?>" 
                                    class="footer-link" 
                                    style="opacity: 0.8; text-decoration: none; font-size: 0.95rem; display: block; padding: 4px 0;">
-                                    <?= lang('Blog.headerPengumuman'); ?>
+                                    <i class="fas fa-bullhorn me-2"></i><?= lang('Blog.headerPengumuman'); ?>
                                 </a>
                             </li>
                             <li class="mb-2">
                                 <a href="<?= base_url('/' . $editprofileLink) ?>" 
                                    class="footer-link" 
                                    style="opacity: 0.8; text-decoration: none; font-size: 0.95rem; display: block; padding: 4px 0;">
-                                    <?= lang('Blog.headerEditProfile'); ?>
+                                    <i class="fas fa-user-edit me-2"></i><?= lang('Blog.headerEditProfile'); ?>
                                 </a>
                             </li>
                         </ul>
@@ -1059,28 +1254,28 @@
                     <!-- Aplikasi (Tengah Kanan) -->
                     <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
                         <h5 class="fw-bold mb-3" style="color: var(--c-accent); font-size: 1.1rem;">
-                            <?= ($lang === 'en') ? 'Application' : 'Aplikasi' ?>
+                            <i class="fas fa-mobile-alt me-2"></i><?= ($lang === 'en') ? 'Application' : 'Aplikasi' ?>
                         </h5>
                         <ul class="list-unstyled">
                             <li class="mb-2">
                                 <a href="<?= base_url('/' . $kalkulatorLink) ?>" 
                                    class="footer-link" 
                                    style="opacity: 0.8; text-decoration: none; font-size: 0.95rem; display: block; padding: 4px 0;">
-                                    Kalkulator Harga Ekspor
+                                    <i class="fas fa-calculator me-2"></i><?= lang('Blog.headerApp1'); ?>
                                 </a>
                             </li>
                             <li class="mb-2">
                                 <a href="<?= base_url('/' . $mpmLink) ?>" 
                                    class="footer-link" 
                                    style="opacity: 0.8; text-decoration: none; font-size: 0.95rem; display: block; padding: 4px 0;">
-                                    Marketing Progress Monitoring
+                                    <i class="fas fa-chart-line me-2"></i><?= lang('Blog.headerApp2'); ?>
                                 </a>
                             </li>
                             <li class="mb-2">
                                 <a href="<?= base_url('/' . $sosmedPlannerLink) ?>" 
                                    class="footer-link" 
                                    style="opacity: 0.8; text-decoration: none; font-size: 0.95rem; display: block; padding: 4px 0;">
-                                    Sosmed Planner
+                                    <i class="fas fa-calendar-alt me-2"></i><?= lang('Blog.headerApp5'); ?>
                                 </a>
                             </li>
                         </ul>
@@ -1091,7 +1286,7 @@
                         <!-- Kontak Info -->
                         <div class="mb-4">
                             <h5 class="fw-bold mb-3" style="color: var(--c-accent); font-size: 1.1rem;">
-                                <?= ($lang === 'en') ? 'Contact Info' : 'Info Kontak' ?>
+                                <i class="fas fa-address-book me-2"></i><?= ($lang === 'en') ? 'Contact Info' : 'Info Kontak' ?>
                             </h5>
                             <ul class="list-unstyled">
                                 <li class="mb-3 d-flex align-items-start">
@@ -1123,12 +1318,12 @@
                             </ul>
                         </div>
                         
-                        <!-- Social Media - di bawah kontak dengan jarak -->
+                        <!-- Social Media -->
                         <div class="mt-4">
                             <h5 class="fw-bold mb-3" style="color: var(--c-accent); font-size: 1.1rem;">
-                                <?= ($lang === 'en') ? 'Follow Us' : 'Ikuti Kami' ?>
+                                <i class="fas fa-share-alt me-2"></i><?= ($lang === 'en') ? 'Follow Us' : 'Ikuti Kami' ?>
                             </h5>
-                            <div class="d-flex align-items-center gap-3">
+                            <div class="social-big">
                                 <a href="<?= esc($profile['link_ig_web']) ?>" target="_blank" rel="noopener" aria-label="Instagram" class="d-inline-block"> 
                                     <button class="Btn instagram"> 
                                         <svg class="svgIcon" viewBox="0 0 448 512" height="1.5em" xmlns="http://www.w3.org/2000/svg">
@@ -1162,23 +1357,16 @@
 
         <!-- Bottom Footer Bar -->
         <div class="bottom-footer-bar">
-            <div class="container">
+            <div class="container bottom-footer">
                 <div style="margin: 0; text-align: center; color: #fff; font-size: var(--nav-text-size); font-weight: 500;">
                     <?php 
-                    // Tampilkan footer text dari database (full dinamis)
-                    // Menghilangkan tag <p> jika ada di database
                     $footer_text = !empty($profile['footer_text']) ? $profile['footer_text'] : '';
-                    
-                    // Hapus tag <p> jika ada
                     $footer_text = strip_tags($footer_text);
-                    
-                    // Jika kosong, gunakan default
                     if (empty($footer_text)) {
                         $footer_text = ($lang === 'en') 
                             ? '© 2024 Indonesian Export Community 24. All rights reserved.' 
                             : '© 2024 Komunitas Ekspor Indonesia 24. All rights reserved.';
                     }
-                    
                     echo esc($footer_text);
                     ?>
                 </div>
@@ -1203,7 +1391,7 @@
             }
 
             // ===== 2) Underline parent nav saat dropdown mobile (≤360px)
-            const mq = window.matchMedia('(max-width: 991px)');
+            const mq = window.matchMedia('(max-width: 360px)');
 
             function setUnderline(toggleEl, on) {
                 if (toggleEl) toggleEl.classList.toggle('is-open', !!on);
@@ -1253,7 +1441,7 @@
         })();
     </script>
 
-    <!-- Smooth scroll untuk hash (dari kode 1) -->
+    <!-- Smooth scroll untuk hash -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             if (!location.hash) return;
@@ -1282,7 +1470,6 @@
     <!-- SweetAlert2 + Toast helper -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        // Toast global
         window.Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -1315,7 +1502,7 @@
                     title: '<?= lang('Blog.title_error'); ?>',
                     text: '<?= esc(session()->getFlashdata('error')); ?>',
                     confirmButtonText: '<?= lang('Blog.close_button'); ?>',
-                    confirmButtonColor: '#0F172A'
+                    confirmButtonColor: '#6F4E37'
                 });
             <?php endif; ?>
         });
@@ -1324,7 +1511,6 @@
     <!-- Vendor JS -->
     <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <!-- FullCalendar kalau masih dibutuhkan global -->
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.js"></script>
     <script src="https://vjs.zencdn.net/8.9.0/video.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

@@ -1073,36 +1073,32 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-light">
                             <li>
-                                <a class="dropdown-item nav-link d-flex" href="<?= base_url(($lang_segment ?: ($lang . '/')) . $belajarEksporLink) ?>">
+                                <a class="dropdown-item nav-link" href="<?= base_url(($lang_segment ?: ($lang . '/')) . $belajarEksporLink) ?>">
                                     <?= lang('Blog.headerMateri'); ?>
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item nav-link d-flex" href="<?= base_url(($lang_segment ?: ($lang . '/')) . $videoTutorialLink) ?>">
+                                <a class="dropdown-item nav-link" href="<?= base_url(($lang_segment ?: ($lang . '/')) . $videoTutorialLink) ?>">
                                     <?= lang('Blog.headerVideo'); ?>
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item nav-link d-flex" href="<?= base_url(($lang_segment ?: ($lang . '/')) . $simulasiWawancaraLink) ?>">
+                                <a class="dropdown-item nav-link" href="<?= base_url(($lang_segment ?: ($lang . '/')) . $simulasiWawancaraLink) ?>">
                                     <?= ($lang == 'id') ? 'Simulasi Wawancara' : 'Interview Simulation' ?>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?= base_url('test-minat-bakat') ?>">
-                                    <i class="fas fa-brain me-1"></i><?= ($lang == 'id') ? 'Test Minat & Bakat' : 'Interest & Talent Test' ?>
+                            <li>
+                                <a class="dropdown-item nav-link" href="<?= base_url('test-minat-bakat') ?>">
+                                    <?= ($lang == 'id') ? 'Test Minat & Bakat' : 'Interest & Talent Test' ?>
                                 </a>
                             </li>
-                            <!-- Tambahkan di navbar setelah test minat & bakat -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?= base_url('smart-job-matching') ?>">
-                                    <i class="fas fa-briefcase me-1"></i>
+                            <li>
+                                <a class="dropdown-item nav-link" href="<?= base_url('smart-job-matching') ?>">
                                     <?php echo ($lang == 'id') ? 'Smart Job Matching' : 'Smart Job Matching'; ?>
                                 </a>
                             </li>
-                            <!-- Tambahkan di navbar setelah Smart Job Matching -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?= base_url('position-fit-evaluation') ?>">
-                                    <i class="fas fa-chart-line me-1"></i>
+                            <li>
+                                <a class="dropdown-item nav-link" href="<?= base_url('position-fit-evaluation') ?>">
                                     <?php echo ($lang == 'id') ? 'Position Fit Evaluation' : 'Position Fit Evaluation'; ?>
                                 </a>
                             </li>
